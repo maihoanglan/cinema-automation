@@ -1,4 +1,5 @@
-import model.User;
+package login;
+
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.AfterMethod;
@@ -8,45 +9,35 @@ import org.testng.asserts.SoftAssert;
 import page.HomePage;
 import page.LoginPage;
 import utils.ConfigReader;
-import utils.ReadExcelFile;
 
 import java.time.Duration;
 
-public class VerifyThatAccountLoginSuccessfullyInCaseReceptionistAccountExist {
+public class VerifyThatLoginScreenIsOpenedAfterClickingOnLoginButtonAtTopRightHomePage {
     WebDriver driver;
     ConfigReader config;
-    ReadExcelFile readExcelFile;
     HomePage homePage;
     LoginPage loginPage;
-    User user;
 
     @BeforeMethod
     public void setUp() {
         driver = new ChromeDriver();
         config = new ConfigReader();
-        readExcelFile = new ReadExcelFile("src/test/resources/users.xlsx");
-
         homePage = new HomePage(driver);
         loginPage = new LoginPage(driver);
-
-        user = new User();
-        user.setEmail(readExcelFile.getCell(1, 0));
-        user.setPassword(readExcelFile.getCell(1, 1));
-        user.setName(readExcelFile.getCell(1, 2));
 
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
     }
 
     @Test
-    public void TestVerifyThatAccountLoginSuccessfullyInCaseReceptionistAccountExist() {
+    public void TestVerifyThatLoginScreenIsOpenedAfterClickingOnLoginButtonAtTopRightHomePage() {
         SoftAssert softAssert = new SoftAssert();
         driver.get(config.getUrl());
         homePage.openLoginPage();
-
-        loginPage.login(user);
-        // Expected Result REC_002
-        softAssert.assertEquals(homePage.getUserAccountName(), user.getName(), "Login unsuccessfully");
+        // Expected Result REC_001
+        softAssert.assertTrue(loginPage.isEmailTextBoxDisplayed(), "Login screen not displayed - Missing Email TextBox");
+        softAssert.assertTrue(loginPage.isPasswordTextBoxDisplayed(), "Login screen not displayed - Missing Password TextBox");
+        softAssert.assertTrue(loginPage.isLoginButtonDisplayed(), "Login screen not displayed - Missing Login Button");
         softAssert.assertAll();
     }
 

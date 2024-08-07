@@ -13,6 +13,7 @@ public class LoginPage {
     By emailTextBoxSelector = By.id("email");
     By passwordTextBoxSelector = By.id("password");
     By loginButtonSelector = By.className("btn");
+    By errorMessageSelector = By.xpath("//*[@style='color: red;font-size: 15px;']");
 
     public LoginPage(WebDriver driver) {
         this.driver = driver;
@@ -42,6 +43,10 @@ public class LoginPage {
 
     public boolean isLoginButtonDisplayed() {
         return driver.findElement(loginButtonSelector).isDisplayed();
+    }
+
+    public boolean isErrorMessageDisplayed() {
+        return driver.findElement(errorMessageSelector).isDisplayed();
     }
 
     public void login(User user) {
