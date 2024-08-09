@@ -20,6 +20,7 @@ public class VerifyThatBookingManagementScreenIsOpenedByReceptionist {
     ConfigReader config;
     ReadExcelFile readExcelFile;
     LoginPage loginPage;
+    HomePage homePage;
     User user;
     DashboardPage dashboardPage;
 
@@ -30,6 +31,7 @@ public class VerifyThatBookingManagementScreenIsOpenedByReceptionist {
         readExcelFile = new ReadExcelFile("src/test/resources/users.xlsx");
 
         loginPage = new LoginPage(driver);
+        homePage = new HomePage(driver);
         dashboardPage = new DashboardPage(driver);
 
         user = new User();
@@ -44,12 +46,26 @@ public class VerifyThatBookingManagementScreenIsOpenedByReceptionist {
     @Test
     public void TestVerifyThatBookingManagementScreenIsOpenedByReceptionist() {
         SoftAssert softAssert = new SoftAssert();
-        driver.get(config.getUrlDashboard());
+        driver.get(config.getUrlHome());
+        homePage.openLoginPage();
 
         loginPage.login(user);
+        // Login Success
+        softAssert.assertEquals(homePage.getUserAccountName(), user.getName(), "Login unsuccessfully");
+
+        homePage.clickOnUserAccountSection();
+
+        // Get current window handle
+        String originalWindow = driver.getWindowHandle();
+        // Click the link which opens in a new window
+        homePage.clickOnAdministratorSection();
+        for (String windowHandle : driver.getWindowHandles()) {
+            if (!originalWindow.equals(windowHandle)){
+                driver.switchTo().window(windowHandle);
+            }
+        }
         dashboardPage.clickOnBookingsManagementMenu();
-        // Expected Result REC_004
-        softAssert.assertEquals(dashboardPage.getTitleOfPage(), "Bookings", "Bookings Management Page not displayed");
+        softAssert.assertEquals(dashboardPage.getTitleOfPage(), "Bookings", "Bookings Management is not displayed");
 
         softAssert.assertAll();
     }
