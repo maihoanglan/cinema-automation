@@ -32,7 +32,7 @@ public class VerifyThatLoginScreenIsOpenedAfterClickingOnLoginButtonAtTopRightHo
     @Test
     public void TestVerifyThatLoginScreenIsOpenedAfterClickingOnLoginButtonAtTopRightHomePage() {
         SoftAssert softAssert = new SoftAssert();
-        driver.get(config.getUrl());
+        driver.get(config.getUrlHome());
         homePage.openLoginPage();
         // Expected Result REC_001
         softAssert.assertTrue(loginPage.isEmailTextBoxDisplayed(), "Login screen not displayed - Missing Email TextBox");

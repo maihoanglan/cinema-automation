@@ -1,4 +1,4 @@
-package login;
+package bookings_management;
 
 import model.User;
 import org.openqa.selenium.WebDriver;
@@ -7,6 +7,7 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
+import page.DashboardPage;
 import page.HomePage;
 import page.LoginPage;
 import utils.ConfigReader;
@@ -14,13 +15,13 @@ import utils.ReadExcelFile;
 
 import java.time.Duration;
 
-public class VerifyThatAccountLoginSuccessfullyInCaseReceptionistAccountExist {
+public class VerifyThatBookingManagementScreenIsOpenedByReceptionist {
     WebDriver driver;
     ConfigReader config;
     ReadExcelFile readExcelFile;
-    HomePage homePage;
     LoginPage loginPage;
     User user;
+    DashboardPage dashboardPage;
 
     @BeforeMethod
     public void setUp() {
@@ -28,8 +29,8 @@ public class VerifyThatAccountLoginSuccessfullyInCaseReceptionistAccountExist {
         config = new ConfigReader();
         readExcelFile = new ReadExcelFile("src/test/resources/users.xlsx");
 
-        homePage = new HomePage(driver);
         loginPage = new LoginPage(driver);
+        dashboardPage = new DashboardPage(driver);
 
         user = new User();
         user.setEmail(readExcelFile.getCell(1, 0));
@@ -41,14 +42,15 @@ public class VerifyThatAccountLoginSuccessfullyInCaseReceptionistAccountExist {
     }
 
     @Test
-    public void TestVerifyThatAccountLoginSuccessfullyInCaseReceptionistAccountExist() {
+    public void TestVerifyThatBookingManagementScreenIsOpenedByReceptionist() {
         SoftAssert softAssert = new SoftAssert();
-        driver.get(config.getUrlHome());
-        homePage.openLoginPage();
+        driver.get(config.getUrlDashboard());
 
         loginPage.login(user);
-        // Expected Result REC_002
-        softAssert.assertEquals(homePage.getUserAccountName(), user.getName(), "Login unsuccessfully");
+        dashboardPage.clickOnBookingsManagementMenu();
+        // Expected Result REC_004
+        softAssert.assertEquals(dashboardPage.getTitleOfPage(), "Bookings", "Bookings Management Page not displayed");
+
         softAssert.assertAll();
     }
 

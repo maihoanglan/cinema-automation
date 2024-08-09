@@ -43,7 +43,7 @@ public class VerifyThatAccountLoginUnsuccessfullyInCaseReceptionistAccountDoesNo
     @Test
     public void TestVerifyThatAccountLoginUnsuccessfullyInCaseReceptionistAccountDoesNotExist() {
         SoftAssert softAssert = new SoftAssert();
-        driver.get(config.getUrl());
+        driver.get(config.getUrlHome());
         homePage.openLoginPage();
 
         loginPage.login(user);

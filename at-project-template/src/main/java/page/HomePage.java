@@ -13,7 +13,7 @@ public class HomePage {
     By userAccountSelector = By.xpath("//button[@data-toggle='dropdown']");
     By logoutButtonSelector = By.xpath("//a[@href='/DoubleTCinema/logout?logoutStatus=true']");
     By registerButtonSelector = By.xpath("//a[@href='/DoubleTCinema/view_register']");
-
+    By administratorButtonSelector = By.xpath("//a[@href='/DoubleTCinema/admin/home']");
 
     public HomePage(WebDriver driver) {
         this.driver = driver;
@@ -48,5 +48,9 @@ public class HomePage {
 
     public boolean isLoginButtonDisplayed() {
         return driver.findElement(loginButtonSelector).isDisplayed();
+    }
+
+    public void clickOnAdministratorSection() {
+        driver.findElement(administratorButtonSelector).click();
     }
 }
