@@ -13,7 +13,7 @@ public class LoginPage {
     By emailTextBoxSelector = By.id("email");
     By passwordTextBoxSelector = By.id("password");
     By loginButtonSelector = By.className("btn");
-    By errorMessageSelector = By.xpath("//*[@style='color: red;font-size: 15px;']");
+    By errorMessageSelector = By.xpath("//h1[text()='Tài khoản hoặc mật khẩu không đúng!']");
 
     public LoginPage(WebDriver driver) {
         this.driver = driver;
@@ -27,7 +27,7 @@ public class LoginPage {
         driver.findElement(passwordTextBoxSelector).sendKeys(password);
     }
 
-    public void clickOnLoginButton() {
+    public void clickOnLoginSection() {
         Wait<WebDriver> wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         wait.until(driver -> driver.findElement(loginButtonSelector).isDisplayed());
         driver.findElement(loginButtonSelector).click();
@@ -45,13 +45,13 @@ public class LoginPage {
         return driver.findElement(loginButtonSelector).isDisplayed();
     }
 
-    public boolean isErrorMessageDisplayed() {
-        return driver.findElement(errorMessageSelector).isDisplayed();
+    public String getErrorMessage() {
+        return driver.findElement(errorMessageSelector).getText();
     }
 
     public void login(User user) {
         enterEmail(user.getEmail());
         enterPassword(user.getPassword());
-        clickOnLoginButton();
+        clickOnLoginSection();
     }
 }

@@ -19,26 +19,26 @@ public class HomePage {
         this.driver = driver;
     }
 
-    public void clickOnLoginButton() {
+    public void clickOnLoginSection() {
         driver.findElement(loginButtonSelector).click();
     }
 
     public void openLoginPage() {
-        clickOnLoginButton();
+        clickOnLoginSection();
         By emailTextBoxSelector = By.id("email");
         Wait<WebDriver> wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         wait.until(driver -> driver.findElement(emailTextBoxSelector).isDisplayed());
     }
 
-    public String getUserAccountName() {
+    public String getEmailName() {
         return driver.findElement(userAccountSelector).getText();
     }
 
-    public void clickOnUserAccountSection() {
+    public void clickOnEmailAccount() {
         driver.findElement(userAccountSelector).click();
     }
 
-    public void clickOnLogoutButton() {
+    public void clickOnLogoutSection() {
         driver.findElement(logoutButtonSelector).click();
     }
 
@@ -50,7 +50,24 @@ public class HomePage {
         return driver.findElement(loginButtonSelector).isDisplayed();
     }
 
-    public void clickOnAdministratorSection() {
+    public void clickOnAdministratorForReceptionistSection() {
         driver.findElement(administratorButtonSelector).click();
+    }
+
+    public void logout() {
+        clickOnEmailAccount();
+        clickOnLogoutSection();
+    }
+
+    public void openAdministratorForReceptionist() {
+        clickOnEmailAccount();
+        clickOnAdministratorForReceptionistSection();
+        // Interact with elements of new tab
+        String originalWindow = driver.getWindowHandle();
+        for (String windowHandle : driver.getWindowHandles()) {
+            if (!originalWindow.equals(windowHandle)) {
+                driver.switchTo().window(windowHandle);
+            }
+        }
     }
 }

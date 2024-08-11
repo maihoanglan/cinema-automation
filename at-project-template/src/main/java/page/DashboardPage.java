@@ -12,7 +12,7 @@ public class DashboardPage {
         this.driver = driver;
     }
 
-    public void clickOnBookingsManagementMenu() {
+    public void openBookingsManagementPage() {
         driver.findElement(bookingsManagementMenuSelector).click();
     }
 
