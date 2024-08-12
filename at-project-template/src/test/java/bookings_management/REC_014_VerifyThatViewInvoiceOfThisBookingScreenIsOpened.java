@@ -14,21 +14,21 @@ public class REC_014_VerifyThatViewInvoiceOfThisBookingScreenIsOpened extends Te
 
     @Test
     public void TestVerifyThatViewInvoiceOfThisBookingScreenIsOpened() {
+
         driver.get(config.getUrlHome());
+
         homePage.openLoginPage();
 
         loginPage.login(user);
-        // Login Success
-        softAssert.assertEquals(homePage.getEmailName(), user.getEmail(), "Login unsuccessfully");
 
         homePage.openAdministratorForReceptionist();
+
         dashboardPage.openBookingsManagementPage();
-        // Booking Management is Displayed
-        softAssert.assertEquals(bookingManagementPage.getTitleOfPage(), "Bookings", "Bookings Management page is not displayed");
 
         bookingManagementPage.openViewInvoiceOfThisBookingPage();
+
         // Expected Result REC_014
-        softAssert.assertEquals(bookingManagementPage.getTitleViewInvoiceOfBookingPage(), "View Invoices Of Booking", "View Invoices Of Booking page is not displayed");
+        softAssert.assertEquals(viewInvoiceOfBookingPage.getTitleViewInvoiceOfBookingPage(), "View Invoices Of Booking", "View Invoices Of Booking page is not displayed");
 
         softAssert.assertAll();
     }

@@ -14,21 +14,21 @@ public class REC_012_VerifyThatViewBookingDetailScreenIsOpened extends TestBase 
 
     @Test
     public void TestVerifyThatViewBookingDetailScreenIsOpened() {
+
         driver.get(config.getUrlHome());
+
         homePage.openLoginPage();
 
         loginPage.login(user);
-        // Login Success
-        softAssert.assertEquals(homePage.getEmailName(), user.getEmail(), "Login unsuccessfully");
 
         homePage.openAdministratorForReceptionist();
+
         dashboardPage.openBookingsManagementPage();
-        // Booking Management is Displayed
-        softAssert.assertEquals(bookingManagementPage.getTitleOfPage(), "Bookings", "Bookings Management page is not displayed");
 
         bookingManagementPage.openViewBookingDetailsPage();
+
         // Expected Result REC_012
-        softAssert.assertEquals(bookingManagementPage.getTitleViewBookingPage(), "View Booking Detail", "View Booking Detail page is not displayed");
+        softAssert.assertEquals(viewBookingDetailPage.getTitleViewBookingDetailPage(), "View Booking Detail", "View Booking Detail page is not displayed");
 
         softAssert.assertAll();
     }

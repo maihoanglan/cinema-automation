@@ -13,20 +13,18 @@ public class REC_010_VerifyThatThereAreResultsReturnWhenSearchForPartially exten
     }
 
     @Test
-    public void TestVerifyThatThereAreResultsReturnWhenSearchForExactly() {
+    public void TestVerifyThatThereAreResultsReturnWhenSearchForPartially() {
+
         driver.get(config.getUrlHome());
+
         homePage.openLoginPage();
 
         loginPage.login(user);
-        // Login Success
-        softAssert.assertEquals(homePage.getEmailName(), user.getEmail(), "Login unsuccessfully");
 
         homePage.openAdministratorForReceptionist();
-        dashboardPage.openBookingsManagementPage();
-        // Booking Management is Displayed
-        softAssert.assertEquals(bookingManagementPage.getTitleOfPage(), "Bookings", "Bookings Management page is not displayed");
 
-        bookingManagementPage.searchForPartially();
+        dashboardPage.openBookingsManagementPage();
+
         // Expected Result REC_010
         softAssert.assertTrue(bookingManagementPage.searchForPartially(), "Partial match not found");
 

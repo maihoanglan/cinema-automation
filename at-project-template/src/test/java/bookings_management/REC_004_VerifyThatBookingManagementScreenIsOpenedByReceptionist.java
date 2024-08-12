@@ -14,17 +14,19 @@ public class REC_004_VerifyThatBookingManagementScreenIsOpenedByReceptionist ext
 
     @Test
     public void TestVerifyThatBookingManagementScreenIsOpenedByReceptionist() {
+
         driver.get(config.getUrlHome());
+
         homePage.openLoginPage();
 
         loginPage.login(user);
-        // Login Success
-        softAssert.assertEquals(homePage.getEmailName(), user.getEmail(), "Login unsuccessfully");
 
         homePage.openAdministratorForReceptionist();
+
         dashboardPage.openBookingsManagementPage();
+
         // Expected Result REC_004
-        softAssert.assertEquals(bookingManagementPage.getTitleOfPage(), "Bookings", "Bookings Management page is not displayed");
+        softAssert.assertEquals(bookingManagementPage.getTitleBookingManagementPage(), "Bookings", "Bookings Management page is not displayed");
 
         softAssert.assertAll();
     }

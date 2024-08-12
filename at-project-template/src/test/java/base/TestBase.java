@@ -7,10 +7,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
 import org.testng.asserts.SoftAssert;
-import page.BookingManagementPage;
-import page.DashboardPage;
-import page.HomePage;
-import page.LoginPage;
+import page.*;
 import page.booking.BookingInfoPage;
 import page.booking.SeatSelectionPage;
 import utils.ConfigReader;
@@ -31,6 +28,8 @@ public class TestBase {
     protected BookingInfoPage bookingInfoPage;
     protected SeatSelectionPage seatSelectionPage;
     protected BookingManagementPage bookingManagementPage;
+    protected ViewBookingDetailPage viewBookingDetailPage;
+    protected ViewInvoiceOfBookingPage viewInvoiceOfBookingPage;
 
     @BeforeClass
     public void navigate() {
@@ -46,6 +45,8 @@ public class TestBase {
         bookingInfoPage = new BookingInfoPage(driver);
         seatSelectionPage = new SeatSelectionPage(driver);
         bookingManagementPage = new BookingManagementPage(driver);
+        viewBookingDetailPage = new ViewBookingDetailPage(driver);
+        viewInvoiceOfBookingPage = new ViewInvoiceOfBookingPage(driver);
 
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));

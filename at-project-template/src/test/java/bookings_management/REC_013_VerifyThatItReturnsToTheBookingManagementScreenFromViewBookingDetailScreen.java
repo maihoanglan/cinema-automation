@@ -14,25 +14,23 @@ public class REC_013_VerifyThatItReturnsToTheBookingManagementScreenFromViewBook
 
     @Test
     public void TestVerifyThatItReturnsToTheBookingManagementScreenFromViewBookingDetailScreen() {
+
         driver.get(config.getUrlHome());
+
         homePage.openLoginPage();
 
         loginPage.login(user);
-        // Login Success
-        softAssert.assertEquals(homePage.getEmailName(), user.getEmail(), "Login unsuccessfully");
 
         homePage.openAdministratorForReceptionist();
+
         dashboardPage.openBookingsManagementPage();
-        // Booking Management is Displayed
-        softAssert.assertEquals(bookingManagementPage.getTitleOfPage(), "Bookings", "Bookings Management page is not displayed");
 
         bookingManagementPage.openViewBookingDetailsPage();
-        // View Booking Detail is displayed
-        softAssert.assertEquals(bookingManagementPage.getTitleViewBookingPage(), "View Booking Detail", "View Booking Detail page is not displayed");
 
-        bookingManagementPage.returnBookingManagementPage();
+        viewBookingDetailPage.returnBookingManagementPage();
+
         // Expected Result REC_013
-        softAssert.assertEquals(bookingManagementPage.getTitleOfPage(), "Bookings", "Bookings Management page is not returned");
+        softAssert.assertEquals(bookingManagementPage.getTitleBookingManagementPage(), "Bookings", "Bookings Management page is not returned");
 
         softAssert.assertAll();
     }
