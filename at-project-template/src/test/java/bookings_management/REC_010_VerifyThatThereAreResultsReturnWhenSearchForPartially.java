@@ -26,7 +26,7 @@ public class REC_010_VerifyThatThereAreResultsReturnWhenSearchForPartially exten
         dashboardPage.openBookingsManagementPage();
 
         // Expected Result REC_010
-        softAssert.assertTrue(bookingManagementPage.searchForPartially(), "Partial match not found");
+        softAssert.assertTrue(bookingManagementPage.search("Hus"), "Partial match not found");
 
         softAssert.assertAll();
     }

@@ -25,10 +25,8 @@ public class REC_011_VerifyThatNoResultsReturnWhenDataIsNotFound extends TestBas
 
         dashboardPage.openBookingsManagementPage();
 
-        bookingManagementPage.searchForNoResults();
-
         // Expected Result REC_011
-        softAssert.assertEquals(bookingManagementPage.verifySearchForNoResults(), "NO DATA DISPLAYED ! PLEASE CHECK AGAIN !", "Have search results returned");
+        softAssert.assertEquals(bookingManagementPage.searchForNoResult("Kung Fu Fu"), "NO DATA DISPLAYED ! PLEASE CHECK AGAIN !", "Have search results returned");
 
         softAssert.assertAll();
     }

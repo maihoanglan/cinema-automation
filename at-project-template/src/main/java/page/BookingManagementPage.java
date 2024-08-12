@@ -11,7 +11,6 @@ public class BookingManagementPage {
     WebDriver driver;
     By titleOfPageSelector = By.className("card-title");
     By bookingsNumberDropdownSelector = By.id("size");
-    By bookingsDataTableSelector = By.xpath("//tbody");
     By numberOfBookingsSelector = By.xpath("//tbody//tr");
     By searchBoxSelector = By.xpath("//div[@class='dataTables_filter']//input");
     By searchButtonSelector = By.xpath("//div[@id='order-listing_filter']//button");
@@ -29,30 +28,27 @@ public class BookingManagementPage {
         return driver.findElement(titleOfPageSelector).getText();
     }
 
-    public void showFiveBookingRows() {
+    private void selectNumberOfBookings(String rows) {
         WebElement bookingsNumber = driver.findElement(bookingsNumberDropdownSelector);
         bookingsNumber.click();
         Select select = new Select(bookingsNumber);
-        select.selectByVisibleText("5");
+        select.selectByVisibleText(rows);
+    }
+
+    public void showFiveBookingRows() {
+        selectNumberOfBookings("5");
     }
 
     public void showTenBookingRows() {
-        WebElement bookingsNumber = driver.findElement(bookingsNumberDropdownSelector);
-        bookingsNumber.click();
-        Select select = new Select(bookingsNumber);
-        select.selectByVisibleText("10");
+        selectNumberOfBookings("10");
     }
 
     public void showFifteenBookingRows() {
-        WebElement bookingsNumber = driver.findElement(bookingsNumberDropdownSelector);
-        bookingsNumber.click();
-        Select select = new Select(bookingsNumber);
-        select.selectByVisibleText("15");
+        selectNumberOfBookings("15");
     }
 
     public int numberOfBookingsIsDisplay() {
-        WebElement bookingsDataTable = driver.findElement(bookingsDataTableSelector);
-        List<WebElement> numberOfBookings = bookingsDataTable.findElements(numberOfBookingsSelector);
+        List<WebElement> numberOfBookings = driver.findElements(numberOfBookingsSelector);
         int rowBookings;
         return rowBookings = numberOfBookings.size();
     }
@@ -61,20 +57,19 @@ public class BookingManagementPage {
         driver.findElement(searchButtonSelector).click();
     }
 
-    public boolean searchForExactly() {
+    public boolean search(String keySearch) {
         WebElement searchExactly = driver.findElement(searchBoxSelector);
         searchExactly.click();
         searchExactly.clear();
-        searchExactly.sendKeys("Kung Fu Hustle");
+        searchExactly.sendKeys(keySearch);
         clickOnSearchButton();
 
         // Verify search results
-        WebElement searchResults = driver.findElement(numberOfBookingsSelector);
-        List<WebElement> resultMovies = searchResults.findElements(nameOfMovieSelector);
+        List<WebElement> resultMovies = driver.findElements(nameOfMovieSelector);
 
         boolean foundExactMatch = false;
         for (WebElement result : resultMovies) {
-            if (result.getText().equals("Kung Fu Hustle")) {
+            if (result.getText().contains(keySearch)) {
                 foundExactMatch = true;
                 break;
             }
@@ -82,36 +77,13 @@ public class BookingManagementPage {
         return foundExactMatch;
     }
 
-    public boolean searchForPartially() {
+    public String searchForNoResult(String keySearch) {
         WebElement searchExactly = driver.findElement(searchBoxSelector);
         searchExactly.click();
         searchExactly.clear();
-        searchExactly.sendKeys("Hus");
+        searchExactly.sendKeys(keySearch);
         clickOnSearchButton();
 
-        // Verify search results
-        WebElement searchResults = driver.findElement(numberOfBookingsSelector);
-        List<WebElement> resultMovies = searchResults.findElements(nameOfMovieSelector);
-
-        boolean foundPartialMatch = false;
-        for (WebElement result : resultMovies) {
-            if (result.getText().equals("Kung Fu Hustle")) {
-                foundPartialMatch = true;
-                break;
-            }
-        }
-        return foundPartialMatch;
-    }
-
-    public void searchForNoResults() {
-        WebElement searchExactly = driver.findElement(searchBoxSelector);
-        searchExactly.click();
-        searchExactly.clear();
-        searchExactly.sendKeys("KungFuHustle");
-        clickOnSearchButton();
-    }
-
-    public String verifySearchForNoResults() {
         return driver.findElement(textMessageSelector).getText();
     }
 
