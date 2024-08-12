@@ -26,7 +26,7 @@ public class REC_009_VerifyThatThereAreResultsReturnWhenSearchForExactly extends
         dashboardPage.openBookingsManagementPage();
 
         // Expected Result REC_009
-        softAssert.assertTrue(bookingManagementPage.searchForExactly(), "Exact match not found");
+        softAssert.assertTrue(bookingManagementPage.search("Kung Fu Hustle"), "Exact match not found");
 
         softAssert.assertAll();
     }
