@@ -14,12 +14,16 @@ public class REC_003_VerifyThatAccountLoginUnsuccessfullyInCaseReceptionistAccou
 
     @Test
     public void TestVerifyThatAccountLoginUnsuccessfullyInCaseReceptionistAccountDoesNotExist() {
+
         driver.get(config.getUrlHome());
+
         homePage.openLoginPage();
 
         loginPage.login(user);
+
         // Expected Result REC_003
         softAssert.assertEquals(loginPage.getErrorMessage(), "Tài khoản hoặc mật khẩu không đúng!", "Login successfully");
+        
         softAssert.assertAll();
     }
 }

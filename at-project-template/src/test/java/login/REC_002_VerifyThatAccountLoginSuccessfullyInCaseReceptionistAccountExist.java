@@ -14,12 +14,16 @@ public class REC_002_VerifyThatAccountLoginSuccessfullyInCaseReceptionistAccount
 
     @Test
     public void TestVerifyThatAccountLoginSuccessfullyInCaseReceptionistAccountExist() {
+
         driver.get(config.getUrlHome());
+
         homePage.openLoginPage();
 
         loginPage.login(user);
+
         // Expected Result REC_002
         softAssert.assertEquals(homePage.getEmailName(), user.getEmail(), "Login unsuccessfully");
+
         softAssert.assertAll();
     }
 }

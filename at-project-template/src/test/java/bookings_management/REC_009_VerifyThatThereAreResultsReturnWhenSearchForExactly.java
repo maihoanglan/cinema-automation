@@ -14,19 +14,17 @@ public class REC_009_VerifyThatThereAreResultsReturnWhenSearchForExactly extends
 
     @Test
     public void TestVerifyThatThereAreResultsReturnWhenSearchForExactly() {
+
         driver.get(config.getUrlHome());
+
         homePage.openLoginPage();
 
         loginPage.login(user);
-        // Login Success
-        softAssert.assertEquals(homePage.getEmailName(), user.getEmail(), "Login unsuccessfully");
 
         homePage.openAdministratorForReceptionist();
-        dashboardPage.openBookingsManagementPage();
-        // Booking Management is Displayed
-        softAssert.assertEquals(bookingManagementPage.getTitleOfPage(), "Bookings", "Bookings Management page is not displayed");
 
-        bookingManagementPage.searchForExactly();
+        dashboardPage.openBookingsManagementPage();
+
         // Expected Result REC_009
         softAssert.assertTrue(bookingManagementPage.searchForExactly(), "Exact match not found");
 

@@ -9,7 +9,6 @@ import java.util.List;
 
 public class BookingManagementPage {
     WebDriver driver;
-    String title;
     By titleOfPageSelector = By.className("card-title");
     By bookingsNumberDropdownSelector = By.id("size");
     By bookingsDataTableSelector = By.xpath("//tbody");
@@ -20,14 +19,13 @@ public class BookingManagementPage {
     By textMessageSelector = By.xpath("//h5[text()='No data displayed ! Please check again !']");
     By viewBookingDetailsSelector = By.xpath("//tbody//tr//td[2]//p[3]//a");
     By viewInvoiceOfThisBookingSelector = By.xpath("//tbody//tr//td[2]//p[4]//a");
-    By titleBookingInfoSelector = By.xpath("//div[@class='card-body']/h4");
-    By backToListBookingsButtonSelector = By.xpath("//p[@class='text-center']//a[@href='/DoubleTCinema/admin/bookings']");
+
 
     public BookingManagementPage(WebDriver driver) {
         this.driver = driver;
     }
 
-    public String getTitleOfPage() {
+    public String getTitleBookingManagementPage() {
         return driver.findElement(titleOfPageSelector).getText();
     }
 
@@ -118,42 +116,10 @@ public class BookingManagementPage {
     }
 
     public void openViewBookingDetailsPage() {
-//        Wait<WebDriver> wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-//        wait.until(ExpectedConditions.elementToBeClickable(viewBookingDetails));
         driver.findElement(viewBookingDetailsSelector).click();
     }
 
     public void openViewInvoiceOfThisBookingPage() {
         driver.findElement(viewInvoiceOfThisBookingSelector).click();
-    }
-
-    public String getTitleViewBookingPage() {
-        String titleViewBookingDetail = driver.findElement(titleBookingInfoSelector).getText();
-
-        // Find the index where ' -- ID Booking: ' starts
-        int endIndex = titleViewBookingDetail.indexOf(" -- ID Booking: ");
-
-        if (endIndex != -1) {
-            // Extract the substring from the beginning up to endIndex
-            title = titleViewBookingDetail.substring(0, endIndex); // 'View Booking Detail'
-        }
-        return title;
-    }
-
-    public String getTitleViewInvoiceOfBookingPage() {
-        String titleViewInvoiceOfBooking = driver.findElement(titleBookingInfoSelector).getText();
-
-        // Find the index where ' -- ID Booking: ' starts
-        int endIndex = titleViewInvoiceOfBooking.indexOf(" -- ID Booking: ");
-
-        if (endIndex != -1) {
-            // Extract the substring from the beginning up to endIndex
-            title = titleViewInvoiceOfBooking.substring(0, endIndex); // 'View Invoices Of Booking'
-        }
-        return title;
-    }
-
-    public void returnBookingManagementPage() {
-        driver.findElement(backToListBookingsButtonSelector).click();
     }
 }

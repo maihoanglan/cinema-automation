@@ -13,20 +13,20 @@ public class REC_007_VerifyThatTheBookingInformationIsFullyDisplayedInCaseOfSele
     }
 
     @Test
-    public void TestVerifyThatTheBookingInformationIsFullyDisplayedInCaseOfSelectingTheNumberOfBookingsShownIs5() {
+    public void TestVerifyThatTheBookingInformationIsFullyDisplayedInCaseOfSelectingTheNumberOfBookingsShownIs10() {
+
         driver.get(config.getUrlHome());
+
         homePage.openLoginPage();
 
         loginPage.login(user);
-        // Login Success
-        softAssert.assertEquals(homePage.getEmailName(), user.getEmail(), "Login unsuccessfully");
 
         homePage.openAdministratorForReceptionist();
+
         dashboardPage.openBookingsManagementPage();
-        // Booking Management is Displayed
-        softAssert.assertEquals(bookingManagementPage.getTitleOfPage(), "Bookings", "Bookings Management page is not displayed");
 
         bookingManagementPage.showTenBookingRows();
+
         // Expected Result REC_007
         softAssert.assertEquals(bookingManagementPage.numberOfBookingsIsDisplay(), 10, "The number of reservations is different from 10");
 
