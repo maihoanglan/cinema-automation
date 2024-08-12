@@ -1,12 +1,11 @@
 package login;
 
 import base.TestBase;
-import model.User;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import utils.UserUtils;
 
-public class VerifyThatAccountLoginUnsuccessfullyInCaseReceptionistAccountDoesNotExist extends TestBase {
+public class REC_003_VerifyThatAccountLoginUnsuccessfullyInCaseReceptionistAccountDoesNotExist extends TestBase {
 
     @BeforeMethod
     public void setUp() {

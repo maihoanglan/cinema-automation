@@ -3,7 +3,7 @@ package login;
 import base.TestBase;
 import org.testng.annotations.Test;
 
-public class VerifyThatLoginScreenIsOpenedAfterClickingOnLoginButtonAtTopRightHomePage extends TestBase {
+public class REC_001_VerifyThatLoginScreenIsOpenedAfterClickingOnLoginButtonAtTopRightHomePage extends TestBase {
 
     @Test
     public void TestVerifyThatLoginScreenIsOpenedAfterClickingOnLoginButtonAtTopRightHomePage() {

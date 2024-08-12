@@ -2,6 +2,8 @@ package page;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.Wait;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -14,6 +16,11 @@ public class HomePage {
     By logoutButtonSelector = By.xpath("//a[@href='/DoubleTCinema/logout?logoutStatus=true']");
     By registerButtonSelector = By.xpath("//a[@href='/DoubleTCinema/view_register']");
     By administratorButtonSelector = By.xpath("//a[@href='/DoubleTCinema/admin/home']");
+    By cinemaFollowTabSelector = By.id("cinemaFollow-tab");
+    By cinemaNameDropdownSelector = By.name("cinemaIdCinemaFollow");
+    By movieNameDropdownSelector = By.name("movieIdCinemaFollow");
+    By cinemaShowTimeDropdownSelector = By.name("showTimeCinemaFollow");
+    By buyTicketButton = By.xpath("//div[@id='cinemaFollow']//form//a");
 
     public HomePage(WebDriver driver) {
         this.driver = driver;
@@ -69,5 +76,42 @@ public class HomePage {
                 driver.switchTo().window(windowHandle);
             }
         }
+    }
+
+    public void clickCinemaFollowTab() {
+        driver.findElement(cinemaFollowTabSelector).click();
+    }
+
+    public void selectCinemaName() {
+        WebElement cinemaNameDropdown = driver.findElement(cinemaNameDropdownSelector);
+        cinemaNameDropdown.click();
+        Select select = new Select(cinemaNameDropdown);
+        select.selectByVisibleText("DoubleT Huế");
+    }
+
+    public void selectMovieName() {
+        WebElement movieNameDropdown = driver.findElement(movieNameDropdownSelector);
+        movieNameDropdown.click();
+        Select select = new Select(movieNameDropdown);
+        select.selectByVisibleText("Tuyệt đỉnh Kung Fu");
+    }
+
+    public void selectCinemaShowTime() {
+        WebElement cinemaShowTimeDropdown = driver.findElement(cinemaShowTimeDropdownSelector);
+        cinemaShowTimeDropdown.click();
+        Select select = new Select(cinemaShowTimeDropdown);
+        select.selectByVisibleText("23:59:00");
+    }
+
+    public void clickBuyTicketButton() {
+        driver.findElement(buyTicketButton).click();
+    }
+
+    public void buyTicket() {
+        clickCinemaFollowTab();
+        selectCinemaName();
+        selectMovieName();
+        selectCinemaShowTime();
+        clickBuyTicketButton();
     }
 }

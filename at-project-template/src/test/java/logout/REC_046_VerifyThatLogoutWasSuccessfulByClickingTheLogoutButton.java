@@ -1,12 +1,11 @@
 package logout;
 
 import base.TestBase;
-import model.User;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import utils.UserUtils;
 
-public class VerifyThatLogoutWasSuccessfulByClickingTheLogoutButton extends TestBase {
+public class REC_046_VerifyThatLogoutWasSuccessfulByClickingTheLogoutButton extends TestBase {
 
     @BeforeMethod
     public void setUp() {

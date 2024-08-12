@@ -7,12 +7,14 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
 import org.testng.asserts.SoftAssert;
+import page.BookingManagementPage;
 import page.DashboardPage;
 import page.HomePage;
 import page.LoginPage;
+import page.booking.BookingInfoPage;
+import page.booking.SeatSelectionPage;
 import utils.ConfigReader;
 import utils.ReadExcelFile;
-import utils.UserUtils;
 
 import java.time.Duration;
 
@@ -26,6 +28,9 @@ public class TestBase {
     protected DashboardPage dashboardPage;
     protected SoftAssert softAssert;
     protected Faker faker;
+    protected BookingInfoPage bookingInfoPage;
+    protected SeatSelectionPage seatSelectionPage;
+    protected BookingManagementPage bookingManagementPage;
 
     @BeforeClass
     public void navigate() {
@@ -38,6 +43,9 @@ public class TestBase {
         dashboardPage = new DashboardPage(driver);
         softAssert = new SoftAssert();
         faker = new Faker();
+        bookingInfoPage = new BookingInfoPage(driver);
+        seatSelectionPage = new SeatSelectionPage(driver);
+        bookingManagementPage = new BookingManagementPage(driver);
 
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));

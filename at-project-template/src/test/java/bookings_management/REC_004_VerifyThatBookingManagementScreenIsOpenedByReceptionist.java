@@ -1,12 +1,11 @@
 package bookings_management;
 
 import base.TestBase;
-import model.User;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import utils.UserUtils;
 
-public class VerifyThatBookingManagementScreenIsOpenedByReceptionist extends TestBase {
+public class REC_004_VerifyThatBookingManagementScreenIsOpenedByReceptionist extends TestBase {
 
     @BeforeMethod
     public void setUp() {
@@ -25,7 +24,7 @@ public class VerifyThatBookingManagementScreenIsOpenedByReceptionist extends Tes
         homePage.openAdministratorForReceptionist();
         dashboardPage.openBookingsManagementPage();
         // Expected Result REC_004
-        softAssert.assertEquals(dashboardPage.getTitleOfPage(), "Bookings", "Bookings Management is not displayed");
+        softAssert.assertEquals(bookingManagementPage.getTitleOfPage(), "Bookings", "Bookings Management page is not displayed");
 
         softAssert.assertAll();
     }
