@@ -1,4 +1,4 @@
-package page;
+package page.bookings_management;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -7,24 +7,24 @@ import org.openqa.selenium.support.ui.Select;
 
 import java.util.List;
 
-public class BookingManagementPage {
+public class BookingsManagementPage {
     WebDriver driver;
     By titleOfPageSelector = By.className("card-title");
     By bookingsNumberDropdownSelector = By.id("size");
     By numberOfBookingsSelector = By.xpath("//tbody//tr");
-    By searchBoxSelector = By.xpath("//div[@class='dataTables_filter']//input");
+    By searchBoxSelector = By.id("searchValue");
     By searchButtonSelector = By.xpath("//div[@id='order-listing_filter']//button");
     By nameOfMovieSelector = By.xpath("//tbody//tr//td[2]//p[2]//span");
-    By textMessageSelector = By.xpath("//h5[text()='No data displayed ! Please check again !']");
+    By textMessageSelector = By.xpath("//tbody//div//h5");
     By viewBookingDetailsSelector = By.xpath("//tbody//tr//td[2]//p[3]//a");
     By viewInvoiceOfThisBookingSelector = By.xpath("//tbody//tr//td[2]//p[4]//a");
 
 
-    public BookingManagementPage(WebDriver driver) {
+    public BookingsManagementPage(WebDriver driver) {
         this.driver = driver;
     }
 
-    public String getTitleBookingManagementPage() {
+    public String getTitleBookingsManagementPage() {
         return driver.findElement(titleOfPageSelector).getText();
     }
 
@@ -58,10 +58,10 @@ public class BookingManagementPage {
     }
 
     public boolean search(String keySearch) {
-        WebElement searchExactly = driver.findElement(searchBoxSelector);
-        searchExactly.click();
-        searchExactly.clear();
-        searchExactly.sendKeys(keySearch);
+        WebElement searchBox = driver.findElement(searchBoxSelector);
+        searchBox.click();
+        searchBox.clear();
+        searchBox.sendKeys(keySearch);
         clickOnSearchButton();
 
         // Verify search results

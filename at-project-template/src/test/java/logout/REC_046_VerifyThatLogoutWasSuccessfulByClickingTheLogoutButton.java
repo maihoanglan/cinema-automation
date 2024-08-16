@@ -5,7 +5,7 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import utils.UserUtils;
 
-public class REC_047_VerifyThatLogoutWasSuccessfulByClickingTheLogoutButton extends TestBase {
+public class REC_046_VerifyThatLogoutWasSuccessfulByClickingTheLogoutButton extends TestBase {
 
     @BeforeMethod
     public void setUp() {
@@ -23,7 +23,7 @@ public class REC_047_VerifyThatLogoutWasSuccessfulByClickingTheLogoutButton exte
 
         homePage.logout();
 
-        // Expected Result REC_047
+        // Expected Result REC_046
         softAssert.assertTrue(homePage.isLoginButtonDisplayed(), "Logout unsuccessfully - Missing Login Button");
         softAssert.assertTrue(homePage.isRegisterButtonDisplayed(), "Logout unsuccessfully - Missing Register Button");
 

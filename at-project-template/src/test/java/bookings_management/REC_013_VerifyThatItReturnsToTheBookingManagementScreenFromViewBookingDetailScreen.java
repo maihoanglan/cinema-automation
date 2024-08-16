@@ -30,7 +30,7 @@ public class REC_013_VerifyThatItReturnsToTheBookingManagementScreenFromViewBook
         viewBookingDetailPage.returnBookingManagementPage();
 
         // Expected Result REC_013
-        softAssert.assertEquals(bookingManagementPage.getTitleBookingManagementPage(), "Bookings", "Bookings Management page is not returned");
+        softAssert.assertEquals(bookingManagementPage.getTitleBookingsManagementPage(), "Bookings", "Bookings Management page is not returned");
 
         softAssert.assertAll();
     }
