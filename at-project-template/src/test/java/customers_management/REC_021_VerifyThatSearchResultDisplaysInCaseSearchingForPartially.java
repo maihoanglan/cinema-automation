@@ -1,11 +1,11 @@
-package bookings_management;
+package customers_management;
 
 import base.TestBase;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import utils.UserUtils;
 
-public class REC_009_VerifyThatThereAreResultsReturnWhenSearchForExactly extends TestBase {
+public class REC_021_VerifyThatSearchResultDisplaysInCaseSearchingForPartially extends TestBase {
 
     @BeforeMethod
     public void setUp() {
@@ -13,8 +13,7 @@ public class REC_009_VerifyThatThereAreResultsReturnWhenSearchForExactly extends
     }
 
     @Test
-    public void TestVerifyThatThereAreResultsReturnWhenSearchForExactly() {
-
+    public void testVerifyThatSearchResultDisplaysInCaseSearchingForPartially() {
         driver.get(config.getUrlHome());
 
         homePage.openLoginPage();
@@ -23,10 +22,10 @@ public class REC_009_VerifyThatThereAreResultsReturnWhenSearchForExactly extends
 
         homePage.openAdministratorForReceptionist();
 
-        dashboardPage.openBookingsManagementPage();
+        dashboardPage.openCustomersManagementPage();
 
-        // Expected Result REC_009
-        softAssert.assertTrue(bookingManagementPage.search("Kung Fu Hustle"), "Exactly match not found");
+        // Expected Result REC_021
+        softAssert.assertTrue(customersManagementPage.search("maihoanglan199"), "Partially match not found");
 
         softAssert.assertAll();
     }

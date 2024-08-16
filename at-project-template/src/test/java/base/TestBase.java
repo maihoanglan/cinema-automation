@@ -10,6 +10,12 @@ import org.testng.asserts.SoftAssert;
 import page.*;
 import page.booking.BookingInfoPage;
 import page.booking.SeatSelectionPage;
+import page.bookings_management.BookingsManagementPage;
+import page.bookings_management.ViewBookingDetailPage;
+import page.bookings_management.ViewInvoiceOfBookingPage;
+import page.customers_management.CustomersManagementPage;
+import page.customers_management.UpdateCustomerPage;
+import page.customers_management.ViewBookingsOfCustomer;
 import utils.ConfigReader;
 import utils.ReadExcelFile;
 
@@ -27,9 +33,12 @@ public class TestBase {
     protected Faker faker;
     protected BookingInfoPage bookingInfoPage;
     protected SeatSelectionPage seatSelectionPage;
-    protected BookingManagementPage bookingManagementPage;
+    protected BookingsManagementPage bookingManagementPage;
     protected ViewBookingDetailPage viewBookingDetailPage;
     protected ViewInvoiceOfBookingPage viewInvoiceOfBookingPage;
+    protected CustomersManagementPage customersManagementPage;
+    protected ViewBookingsOfCustomer viewBookingsOfCustomer;
+    protected UpdateCustomerPage updateCustomerPage;
 
     @BeforeClass
     public void navigate() {
@@ -44,9 +53,12 @@ public class TestBase {
         faker = new Faker();
         bookingInfoPage = new BookingInfoPage(driver);
         seatSelectionPage = new SeatSelectionPage(driver);
-        bookingManagementPage = new BookingManagementPage(driver);
+        bookingManagementPage = new BookingsManagementPage(driver);
         viewBookingDetailPage = new ViewBookingDetailPage(driver);
         viewInvoiceOfBookingPage = new ViewInvoiceOfBookingPage(driver);
+        customersManagementPage = new CustomersManagementPage(driver);
+        viewBookingsOfCustomer = new ViewBookingsOfCustomer(driver);
+        updateCustomerPage = new UpdateCustomerPage(driver);
 
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
