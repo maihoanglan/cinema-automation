@@ -8,8 +8,7 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
 import org.testng.asserts.SoftAssert;
 import page.*;
-import page.booking.BookingInfoPage;
-import page.booking.SeatSelectionPage;
+import page.booking.*;
 import page.bookings_management.BookingsManagementPage;
 import page.bookings_management.ViewBookingDetailPage;
 import page.bookings_management.ViewInvoiceOfBookingPage;
@@ -23,6 +22,11 @@ import java.time.Duration;
 
 public class TestBase {
     protected WebDriver driver;
+    protected String titlePage;
+    protected String randomAddress;
+    protected int randomNumber;
+    protected String randomMovieName;
+    protected String randomEmail;
     protected ConfigReader config;
     protected ReadExcelFile readExcelFile;
     protected LoginPage loginPage;
@@ -31,7 +35,7 @@ public class TestBase {
     protected DashboardPage dashboardPage;
     protected SoftAssert softAssert;
     protected Faker faker;
-    protected BookingInfoPage bookingInfoPage;
+    protected TicketSelectionPage bookingInfoPage;
     protected SeatSelectionPage seatSelectionPage;
     protected BookingsManagementPage bookingManagementPage;
     protected ViewBookingDetailPage viewBookingDetailPage;
@@ -39,6 +43,9 @@ public class TestBase {
     protected CustomersManagementPage customersManagementPage;
     protected ViewBookingsOfCustomer viewBookingsOfCustomer;
     protected UpdateCustomerPage updateCustomerPage;
+    protected CustomerInformationPage customerInformationPage;
+    protected PaymentPage paymentPage;
+    protected SuccessfulTransactionPage successfulTransactionPage;
 
     @BeforeClass
     public void navigate() {
@@ -51,7 +58,7 @@ public class TestBase {
         dashboardPage = new DashboardPage(driver);
         softAssert = new SoftAssert();
         faker = new Faker();
-        bookingInfoPage = new BookingInfoPage(driver);
+        bookingInfoPage = new TicketSelectionPage(driver);
         seatSelectionPage = new SeatSelectionPage(driver);
         bookingManagementPage = new BookingsManagementPage(driver);
         viewBookingDetailPage = new ViewBookingDetailPage(driver);
@@ -59,6 +66,9 @@ public class TestBase {
         customersManagementPage = new CustomersManagementPage(driver);
         viewBookingsOfCustomer = new ViewBookingsOfCustomer(driver);
         updateCustomerPage = new UpdateCustomerPage(driver);
+        customerInformationPage = new CustomerInformationPage(driver);
+        paymentPage = new PaymentPage(driver);
+        successfulTransactionPage = new SuccessfulTransactionPage(driver);
 
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));

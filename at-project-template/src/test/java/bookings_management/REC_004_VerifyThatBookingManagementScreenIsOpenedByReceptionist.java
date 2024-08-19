@@ -9,7 +9,7 @@ public class REC_004_VerifyThatBookingManagementScreenIsOpenedByReceptionist ext
 
     @BeforeMethod
     public void setUp() {
-        user = UserUtils.getUser();
+        user = UserUtils.getReceptionistAccount();
     }
 
     @Test
@@ -26,7 +26,7 @@ public class REC_004_VerifyThatBookingManagementScreenIsOpenedByReceptionist ext
         dashboardPage.openBookingsManagementPage();
 
         // Expected Result REC_004
-        softAssert.assertEquals(bookingManagementPage.getTitleBookingsManagementPage(), "Bookings", "Bookings Management page is not displayed");
+        softAssert.assertEquals(bookingManagementPage.getTitle(), "Bookings", "Bookings Management page is not displayed");
 
         softAssert.assertAll();
     }

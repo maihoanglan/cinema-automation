@@ -9,7 +9,7 @@ public class REC_002_VerifyThatAccountLoginSuccessfullyInCaseReceptionistAccount
 
     @BeforeMethod
     public void setUp() {
-        user = UserUtils.getUser();
+        user = UserUtils.getReceptionistAccount();
     }
 
     @Test
@@ -22,7 +22,7 @@ public class REC_002_VerifyThatAccountLoginSuccessfullyInCaseReceptionistAccount
         loginPage.login(user);
 
         // Expected Result REC_002
-        softAssert.assertEquals(homePage.getEmailName(), user.getEmail(), "Login unsuccessfully");
+        softAssert.assertEquals(homePage.getEmailName(), user.getEmail(), "Login by receptionist account unsuccessfully");
 
         softAssert.assertAll();
     }

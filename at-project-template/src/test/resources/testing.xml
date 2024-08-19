@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Cinema" parallel="classes" thread-count="2">
+    <test name="CustomerRole">
+        <classes>
+            <class name="booking.CUS_003_VerifyThatBookingSuccessfullyInCaseTheCustomerBuyTicket"></class>
+        </classes>
+    </test>
+
+<!--    <parameter name="email" value="mailan97@gmail.com"></parameter>-->
+<!--    <parameter name="password" value="Abc@123"></parameter>-->
+<!--    <test name="Package test">-->
+<!--        <classes>-->
+<!--            <class name="login.VerifyLoginFunctionPOM"></class>-->
+<!--                <parameter name="email" value="mailan11@gmail.com"></parameter>-->
+<!--        </classes>-->
+<!--    </test>-->
+<!--</suite>-->

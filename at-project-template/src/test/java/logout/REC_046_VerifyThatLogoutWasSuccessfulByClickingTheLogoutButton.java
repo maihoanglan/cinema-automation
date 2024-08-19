@@ -9,7 +9,7 @@ public class REC_046_VerifyThatLogoutWasSuccessfulByClickingTheLogoutButton exte
 
     @BeforeMethod
     public void setUp() {
-        user = UserUtils.getUser();
+        user = UserUtils.getReceptionistAccount();
     }
 
     @Test

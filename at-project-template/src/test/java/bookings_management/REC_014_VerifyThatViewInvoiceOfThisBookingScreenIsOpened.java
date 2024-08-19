@@ -9,7 +9,7 @@ public class REC_014_VerifyThatViewInvoiceOfThisBookingScreenIsOpened extends Te
 
     @BeforeMethod
     public void setUp() {
-        user = UserUtils.getUser();
+        user = UserUtils.getReceptionistAccount();
     }
 
     @Test
@@ -28,7 +28,7 @@ public class REC_014_VerifyThatViewInvoiceOfThisBookingScreenIsOpened extends Te
         bookingManagementPage.openViewInvoiceOfThisBookingPage();
 
         // Expected Result REC_014
-        softAssert.assertEquals(viewInvoiceOfBookingPage.getTitleViewInvoiceOfBookingPage(), "View Invoices Of Booking", "View Invoices Of Booking page is not displayed");
+        softAssert.assertEquals(viewInvoiceOfBookingPage.getTitle(), "View Invoices Of Booking", "View Invoices Of Booking page is not displayed");
 
         softAssert.assertAll();
     }

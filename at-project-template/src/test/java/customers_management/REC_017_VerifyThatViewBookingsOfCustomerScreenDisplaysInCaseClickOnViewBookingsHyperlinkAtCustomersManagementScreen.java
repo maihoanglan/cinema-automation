@@ -9,7 +9,7 @@ public class REC_017_VerifyThatViewBookingsOfCustomerScreenDisplaysInCaseClickOn
 
     @BeforeMethod
     public void setUp() {
-        user = UserUtils.getUser();
+        user = UserUtils.getReceptionistAccount();
     }
 
     @Test
@@ -24,13 +24,13 @@ public class REC_017_VerifyThatViewBookingsOfCustomerScreenDisplaysInCaseClickOn
 
         dashboardPage.openCustomersManagementPage();
 
-        String name = customersManagementPage.getCustomerNameInCustomersManagementPage();
+        titlePage = customersManagementPage.getCustomerNameInCustomersManagementPage();
 
         customersManagementPage.openViewBookingsOfCustomerPage();
 
         // Expected Result REC_017
-        softAssert.assertEquals(viewBookingsOfCustomer.getTitleViewBookingsOfCustomerPage(), "View Bookings Of Customer", "View Bookings Of Customer page is not returned");
-        softAssert.assertEquals(name, viewBookingsOfCustomer.getCustomerNameInViewBookingsPage(), "Name does not match");
+        softAssert.assertEquals(viewBookingsOfCustomer.getTitle(), "View Bookings Of Customer", "View Bookings Of Customer page is not returned");
+        softAssert.assertEquals(titlePage, viewBookingsOfCustomer.getCustomerName(), "Name does not match");
 
         softAssert.assertAll();
     }

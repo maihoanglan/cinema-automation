@@ -9,7 +9,7 @@ public class REC_016_VerifyThatCustomersManagementScreenDisplaysInCaseLoginRecep
 
     @BeforeMethod
     public void setUp() {
-        user = UserUtils.getUser();
+        user = UserUtils.getReceptionistAccount();
     }
 
     @Test
@@ -25,7 +25,7 @@ public class REC_016_VerifyThatCustomersManagementScreenDisplaysInCaseLoginRecep
         dashboardPage.openCustomersManagementPage();
 
         // Expected Result REC_016
-        softAssert.assertEquals(customersManagementPage.getTitleCustomersManagementPage(), "Customers", "Customers Management page is not displayed");
+        softAssert.assertEquals(customersManagementPage.getTitle(), "Customers", "Customers Management page is not displayed");
 
         softAssert.assertAll();
     }

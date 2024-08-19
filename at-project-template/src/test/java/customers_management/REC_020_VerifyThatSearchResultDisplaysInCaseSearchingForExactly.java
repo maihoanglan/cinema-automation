@@ -9,7 +9,7 @@ public class REC_020_VerifyThatSearchResultDisplaysInCaseSearchingForExactly ext
 
     @BeforeMethod
     public void setUp() {
-        user = UserUtils.getUser();
+        user = UserUtils.getReceptionistAccount();
     }
 
     @Test
@@ -25,7 +25,7 @@ public class REC_020_VerifyThatSearchResultDisplaysInCaseSearchingForExactly ext
         dashboardPage.openCustomersManagementPage();
 
         // Expected Result REC_020
-        softAssert.assertTrue(customersManagementPage.search("maihoanglan1997@gmail.com"), "Exactly match not found");
+        softAssert.assertTrue(customersManagementPage.searchEmailHasResult(customersManagementPage.getExactlyEmailExistsInDB()), "Exactly match not found");
 
         softAssert.assertAll();
     }

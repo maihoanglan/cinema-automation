@@ -13,7 +13,7 @@ public class ViewBookingDetailPage {
         this.driver = driver;
     }
 
-    public String getTitleViewBookingDetailPage() {
+    public String getTitle() {
         String titleViewBookingDetail = driver.findElement(titleViewBookingDetailSelector).getText();
 
         // Find the index where ' -- ID Booking: ' starts

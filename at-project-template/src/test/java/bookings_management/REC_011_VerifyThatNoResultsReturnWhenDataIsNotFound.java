@@ -9,7 +9,8 @@ public class REC_011_VerifyThatNoResultsReturnWhenDataIsNotFound extends TestBas
 
     @BeforeMethod
     public void setUp() {
-        user = UserUtils.getUser();
+        user = UserUtils.getReceptionistAccount();
+        randomMovieName = faker.book().title();
     }
 
     @Test
@@ -26,7 +27,7 @@ public class REC_011_VerifyThatNoResultsReturnWhenDataIsNotFound extends TestBas
         dashboardPage.openBookingsManagementPage();
 
         // Expected Result REC_011
-        softAssert.assertEquals(bookingManagementPage.searchForNoResult("Kung Fu Fu"), "NO DATA DISPLAYED ! PLEASE CHECK AGAIN !", "Have search results returned");
+        softAssert.assertEquals(bookingManagementPage.searchMovieNameNoResult(randomMovieName), "NO DATA DISPLAYED ! PLEASE CHECK AGAIN !", "Have search results returned");
 
         softAssert.assertAll();
     }

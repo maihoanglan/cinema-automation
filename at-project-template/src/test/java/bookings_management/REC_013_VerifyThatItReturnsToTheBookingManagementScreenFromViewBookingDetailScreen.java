@@ -9,7 +9,7 @@ public class REC_013_VerifyThatItReturnsToTheBookingManagementScreenFromViewBook
 
     @BeforeMethod
     public void setUp() {
-        user = UserUtils.getUser();
+        user = UserUtils.getReceptionistAccount();
     }
 
     @Test
@@ -30,7 +30,7 @@ public class REC_013_VerifyThatItReturnsToTheBookingManagementScreenFromViewBook
         viewBookingDetailPage.returnBookingManagementPage();
 
         // Expected Result REC_013
-        softAssert.assertEquals(bookingManagementPage.getTitleBookingsManagementPage(), "Bookings", "Bookings Management page is not returned");
+        softAssert.assertEquals(bookingManagementPage.getTitle(), "Bookings", "Bookings Management page is not returned");
 
         softAssert.assertAll();
     }

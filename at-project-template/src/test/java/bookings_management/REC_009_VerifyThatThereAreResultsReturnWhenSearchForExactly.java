@@ -9,7 +9,7 @@ public class REC_009_VerifyThatThereAreResultsReturnWhenSearchForExactly extends
 
     @BeforeMethod
     public void setUp() {
-        user = UserUtils.getUser();
+        user = UserUtils.getReceptionistAccount();
     }
 
     @Test
@@ -26,7 +26,7 @@ public class REC_009_VerifyThatThereAreResultsReturnWhenSearchForExactly extends
         dashboardPage.openBookingsManagementPage();
 
         // Expected Result REC_009
-        softAssert.assertTrue(bookingManagementPage.search("Kung Fu Hustle"), "Exactly match not found");
+        softAssert.assertTrue(bookingManagementPage.searchMovieNameHasResult(bookingManagementPage.getExactlyMovieNameExistsInDB()), "Exactly match not found");
 
         softAssert.assertAll();
     }

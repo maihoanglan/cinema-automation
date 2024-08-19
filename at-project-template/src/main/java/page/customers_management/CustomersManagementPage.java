@@ -8,11 +8,12 @@ import java.util.List;
 
 public class CustomersManagementPage {
     WebDriver driver;
+    String result;
     By titleOfPageSelector = By.className("card-title");
     By viewBookingsHyperlinkSelector = By.xpath("//tbody/tr/td[7]/a");
     By customerNameSelector = By.xpath("//tbody/tr/td");
-    By editIconSelector = By.xpath("//a[@title='Edit Customer']");
-    By customerAddressSelector = By.xpath("//tbody/tr/td[6]");
+//    By editIconSelector = By.xpath(String.format("//tr[%s]//a[@title='Edit Customer']"));
+//    By customerAddressSelector = By.xpath("//tbody/tr[%s]/td[6]");
     By searchBoxSelector = By.id("searchValue");
     By searchButtonSelector = By.xpath("//div[@id='order-listing_filter']//button");
     By customerEmailSelector = By.xpath("//tbody/tr/td[2]");
@@ -22,7 +23,7 @@ public class CustomersManagementPage {
         this.driver = driver;
     }
 
-    public String getTitleCustomersManagementPage() {
+    public String getTitle() {
         return driver.findElement(titleOfPageSelector).getText();
     }
 
@@ -34,31 +35,49 @@ public class CustomersManagementPage {
         return driver.findElement(customerNameSelector).getText();
     }
 
-    public void openUpdateCustomerAddressPage() {
-        driver.findElement(editIconSelector).click();
+    public void openUpdateCustomerAddressPage(int row) {
+        driver.findElement(By.xpath(String.format("//tr[%s]//a[@title='Edit Customer']", row))).click();
     }
 
-    public String getCustomerAddress() {
-        return driver.findElement(customerAddressSelector).getText();
+    public String getCustomerAddress(int row) {
+        return driver.findElement(By.xpath(String.format("//tbody/tr[%s]/td[6]", row))).getText();
     }
 
     public void clickOnSearchButton() {
         driver.findElement(searchButtonSelector).click();
     }
 
-    public boolean search(String keySearch) {
+    private void search(String email) {
         WebElement searchBox = driver.findElement(searchBoxSelector);
         searchBox.click();
         searchBox.clear();
-        searchBox.sendKeys(keySearch);
+        searchBox.sendKeys(email);
         clickOnSearchButton();
+    }
+
+    public String getExactlyEmailExistsInDB() {
+        return driver.findElement(customerEmailSelector).getText();
+    }
+
+    public String getPartiallyEmailExistsInDB() {
+        String partiallyOfMovieName = driver.findElement(customerEmailSelector).getText();
+        if (partiallyOfMovieName.length() > 3) {
+            result = partiallyOfMovieName.substring(0, 3);
+        } else {
+            result = driver.findElement(customerEmailSelector).getText();
+        }
+        return result;
+    }
+
+    public boolean searchEmailHasResult(String email) {
+        search(email);
 
         // Verify search results
         List<WebElement> resultMovies = driver.findElements(customerEmailSelector);
 
         boolean foundExactMatch = false;
         for (WebElement result : resultMovies) {
-            if (result.getText().contains(keySearch)) {
+            if (result.getText().contains(email)) {
                 foundExactMatch = true;
                 break;
             }
@@ -66,13 +85,8 @@ public class CustomersManagementPage {
         return foundExactMatch;
     }
 
-    public String searchForNoResult(String keySearch) {
-        WebElement searchExactly = driver.findElement(searchBoxSelector);
-        searchExactly.click();
-        searchExactly.clear();
-        searchExactly.sendKeys(keySearch);
-        clickOnSearchButton();
-
+    public String searchEmailNoResult(String email) {
+        search(email);
         return driver.findElement(textMessageSelector).getText();
     }
 }
