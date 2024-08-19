@@ -9,7 +9,7 @@ public class REC_012_VerifyThatViewBookingDetailScreenIsOpened extends TestBase 
 
     @BeforeMethod
     public void setUp() {
-        user = UserUtils.getUser();
+        user = UserUtils.getReceptionistAccount();
     }
 
     @Test
@@ -28,7 +28,7 @@ public class REC_012_VerifyThatViewBookingDetailScreenIsOpened extends TestBase 
         bookingManagementPage.openViewBookingDetailsPage();
 
         // Expected Result REC_012
-        softAssert.assertEquals(viewBookingDetailPage.getTitleViewBookingDetailPage(), "View Booking Detail", "View Booking Detail page is not displayed");
+        softAssert.assertEquals(viewBookingDetailPage.getTitle(), "View Booking Detail", "View Booking Detail page is not displayed");
 
         softAssert.assertAll();
     }

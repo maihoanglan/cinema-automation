@@ -5,7 +5,7 @@ import model.User;
 
 public class UserUtils {
 
-    public static User getRandomUser() {
+    public static User getRandomAccount() {
         Faker faker = new Faker();
         User user = new User();
         user.setEmail(faker.internet().emailAddress());
@@ -13,11 +13,19 @@ public class UserUtils {
         return user;
     }
 
-    public static User getUser() {
+    public static User getReceptionistAccount() {
         ReadExcelFile excelFile = new ReadExcelFile("src/test/resources/users.xlsx");
         User user = new User();
         user.setEmail(excelFile.getCell(1, 0));
         user.setPassword(excelFile.getCell(1, 1));
+        return user;
+    }
+
+    public static User getCustomerAccount() {
+        ReadExcelFile excelFile = new ReadExcelFile("src/test/resources/users.xlsx");
+        User user = new User();
+        user.setEmail(excelFile.getCell(2, 0));
+        user.setPassword(excelFile.getCell(2, 1));
         return user;
     }
 }

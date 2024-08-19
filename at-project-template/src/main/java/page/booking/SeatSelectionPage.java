@@ -2,33 +2,32 @@ package page.booking;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 
 public class SeatSelectionPage {
     WebDriver driver;
-    By titlePageSelector = By.xpath("//h4[text()='Chọn ghế']");
-    By seatButtonSelector = By.xpath("//div[@class='boxes']/div");
-    By continueButtonSeatSelectionSelector = By.xpath("//div[@class='col-5 ticketInfo']//button");
+    By seatAvailableSelector = By.xpath("//div[@class='boxes']//div[@onclick]");
+    By continueButtonSelector = By.xpath("//div[@class='col-5 ticketInfo']//button[@onclick]");
 
     public SeatSelectionPage(WebDriver driver) {
         this.driver = driver;
     }
 
-    public String getTitleSeatSelectionPage() {
-        return driver.findElement(titlePageSelector).getText();
-    }
-
+    //  Handle seat is selected
     public void clickSeat() {
-        driver.findElement(seatButtonSelector).click();
+        driver.findElement(seatAvailableSelector).click();
     }
 
     public void clickContinueButtonSeatSelection() {
-        WebElement element = driver.findElement(By.xpath("//div[@class='col-5 ticketInfo']//button"));
-        element.click();
+        driver.findElement(continueButtonSelector).click();
     }
 
     public void selectSeat() {
         clickSeat();
+        try {
+            Thread.sleep(3000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
         clickContinueButtonSeatSelection();
     }
 }

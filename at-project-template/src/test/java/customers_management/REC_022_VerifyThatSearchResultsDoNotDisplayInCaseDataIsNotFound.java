@@ -9,7 +9,8 @@ public class REC_022_VerifyThatSearchResultsDoNotDisplayInCaseDataIsNotFound ext
 
     @BeforeMethod
     public void setUp() {
-        user = UserUtils.getUser();
+        user = UserUtils.getReceptionistAccount();
+        randomEmail = faker.internet().emailAddress();
     }
 
     @Test
@@ -25,7 +26,7 @@ public class REC_022_VerifyThatSearchResultsDoNotDisplayInCaseDataIsNotFound ext
         dashboardPage.openCustomersManagementPage();
 
         // Expected Result REC_022
-        softAssert.assertEquals(customersManagementPage.searchForNoResult("maihoanglan@gmail.com"), "NO DATA DISPLAYED ! PLEASE CHECK AGAIN !", "Have search results returned");
+        softAssert.assertEquals(customersManagementPage.searchEmailNoResult(randomEmail), "NO DATA DISPLAYED ! PLEASE CHECK AGAIN !", "Have search results returned");
 
         softAssert.assertAll();
     }

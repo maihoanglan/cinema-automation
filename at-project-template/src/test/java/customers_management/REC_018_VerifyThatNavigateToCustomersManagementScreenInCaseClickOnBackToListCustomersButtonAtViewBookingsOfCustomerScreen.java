@@ -9,7 +9,7 @@ public class REC_018_VerifyThatNavigateToCustomersManagementScreenInCaseClickOnB
 
     @BeforeMethod
     public void setUp() {
-        user = UserUtils.getUser();
+        user = UserUtils.getReceptionistAccount();
     }
 
     @Test
@@ -29,7 +29,7 @@ public class REC_018_VerifyThatNavigateToCustomersManagementScreenInCaseClickOnB
         viewBookingsOfCustomer.returnCustomersManagementPage();
 
         // Expected Result REC_018
-        softAssert.assertEquals(customersManagementPage.getTitleCustomersManagementPage(), "Customers", "Customers Management page is not returned");
+        softAssert.assertEquals(customersManagementPage.getTitle(), "Customers", "Customers Management page is not returned");
 
         softAssert.assertAll();
     }

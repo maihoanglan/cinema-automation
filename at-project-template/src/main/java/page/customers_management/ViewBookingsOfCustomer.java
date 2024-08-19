@@ -14,7 +14,7 @@ public class ViewBookingsOfCustomer {
         this.driver = driver;
     }
 
-    public String getTitleViewBookingsOfCustomerPage() {
+    public String getTitle() {
         String titleViewBookingsOfCustomer = driver.findElement(titleViewBookingsOfCustomerSelector).getText();
 
         // Find the index where ':' starts
@@ -27,7 +27,7 @@ public class ViewBookingsOfCustomer {
         return title;
     }
 
-    public String getCustomerNameInViewBookingsPage() {
+    public String getCustomerName() {
         String nameOfCustomer = driver.findElement(titleViewBookingsOfCustomerSelector).getText();
 
         // Find the index where ':' starts

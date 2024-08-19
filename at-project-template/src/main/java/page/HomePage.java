@@ -82,36 +82,36 @@ public class HomePage {
         driver.findElement(cinemaFollowTabSelector).click();
     }
 
-    public void selectCinemaName() {
-        WebElement cinemaNameDropdown = driver.findElement(cinemaNameDropdownSelector);
-        cinemaNameDropdown.click();
-        Select select = new Select(cinemaNameDropdown);
-        select.selectByVisibleText("DoubleT Huế");
-    }
-
-    public void selectMovieName() {
-        WebElement movieNameDropdown = driver.findElement(movieNameDropdownSelector);
-        movieNameDropdown.click();
-        Select select = new Select(movieNameDropdown);
-        select.selectByVisibleText("Tuyệt đỉnh Kung Fu");
-    }
-
-    public void selectCinemaShowTime() {
-        WebElement cinemaShowTimeDropdown = driver.findElement(cinemaShowTimeDropdownSelector);
-        cinemaShowTimeDropdown.click();
-        Select select = new Select(cinemaShowTimeDropdown);
-        select.selectByVisibleText("23:59:00");
-    }
-
     public void clickBuyTicketButton() {
         driver.findElement(buyTicketButton).click();
     }
 
-    public void buyTicket() {
+    public void chooseCinema(String cinemaName) {
+        WebElement name = driver.findElement(cinemaNameDropdownSelector);
+        name.click();
+        Select select = new Select(name);
+        select.selectByVisibleText(cinemaName);
+    }
+
+    public void chooseMovie(String movieName) {
+        WebElement movie = driver.findElement(movieNameDropdownSelector);
+        movie.click();
+        Select select = new Select(movie);
+        select.selectByVisibleText(movieName);
+    }
+
+    public void chooseShowTime(String showTime) {
+        WebElement time = driver.findElement(cinemaShowTimeDropdownSelector);
+        time.click();
+        Select select = new Select(time);
+        select.selectByVisibleText(showTime);
+    }
+
+    public void quickSearchTicket(String cinemaName, String movieName, String showTime) {
         clickCinemaFollowTab();
-        selectCinemaName();
-        selectMovieName();
-        selectCinemaShowTime();
+        chooseCinema(cinemaName);
+        chooseMovie(movieName);
+        chooseShowTime(showTime);
         clickBuyTicketButton();
     }
 }

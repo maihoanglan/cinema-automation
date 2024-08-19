@@ -5,7 +5,7 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import utils.UserUtils;
 
-public class REC_003_VerifyThatAccountLoginUnsuccessfullyInCaseReceptionistAccountDoesNotExist extends TestBase {
+public class CUS_002_VerifyThatLoginUnsuccessfullyInCaseCustomerAccountDoesNotExist extends TestBase {
 
     @BeforeMethod
     public void setUp() {
@@ -13,7 +13,7 @@ public class REC_003_VerifyThatAccountLoginUnsuccessfullyInCaseReceptionistAccou
     }
 
     @Test
-    public void TestVerifyThatAccountLoginUnsuccessfullyInCaseReceptionistAccountDoesNotExist() {
+    public void testVerifyThatLoginUnsuccessfullyInCaseCustomerAccountDoesNotExist() {
 
         driver.get(config.getUrlHome());
 
@@ -21,8 +21,8 @@ public class REC_003_VerifyThatAccountLoginUnsuccessfullyInCaseReceptionistAccou
 
         loginPage.login(user);
 
-        // Expected Result REC_003
-        softAssert.assertEquals(loginPage.getErrorMessage(), "Tài khoản hoặc mật khẩu không đúng!", "Login by receptionist account successfully");
+        // Expected Result CUS_002
+        softAssert.assertEquals(loginPage.getErrorMessage(), "Tài khoản hoặc mật khẩu không đúng!", "Login by customer account successfully");
         
         softAssert.assertAll();
     }

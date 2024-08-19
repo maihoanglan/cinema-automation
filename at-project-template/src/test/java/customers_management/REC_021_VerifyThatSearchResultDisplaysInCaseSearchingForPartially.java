@@ -9,7 +9,7 @@ public class REC_021_VerifyThatSearchResultDisplaysInCaseSearchingForPartially e
 
     @BeforeMethod
     public void setUp() {
-        user = UserUtils.getUser();
+        user = UserUtils.getReceptionistAccount();
     }
 
     @Test
@@ -25,7 +25,7 @@ public class REC_021_VerifyThatSearchResultDisplaysInCaseSearchingForPartially e
         dashboardPage.openCustomersManagementPage();
 
         // Expected Result REC_021
-        softAssert.assertTrue(customersManagementPage.search("maihoanglan199"), "Partially match not found");
+        softAssert.assertTrue(customersManagementPage.searchEmailHasResult(customersManagementPage.getPartiallyEmailExistsInDB()), "Partially match not found");
 
         softAssert.assertAll();
     }

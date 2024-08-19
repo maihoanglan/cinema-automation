@@ -9,7 +9,9 @@ public class REC_019_VerifyThatUpdateCustomerAddressSuccessfullyInCaseClickOnEdi
 
     @BeforeMethod
     public void setUp() {
-        user = UserUtils.getUser();
+        user = UserUtils.getReceptionistAccount();
+        randomAddress = faker.address().fullAddress();
+        randomNumber = faker.number().numberBetween(0, 5);
     }
 
     @Test
@@ -24,12 +26,12 @@ public class REC_019_VerifyThatUpdateCustomerAddressSuccessfullyInCaseClickOnEdi
 
         dashboardPage.openCustomersManagementPage();
 
-        customersManagementPage.openUpdateCustomerAddressPage();
+        customersManagementPage.openUpdateCustomerAddressPage(randomNumber);
 
-        updateCustomerPage.updateCustomerAddress("TTHue");
+        updateCustomerPage.updateCustomerAddress(randomAddress);
 
         // Expected Result REC_019
-        softAssert.assertEquals(customersManagementPage.getCustomerAddress(), "TTHue", "Addresses do not match");
+        softAssert.assertEquals(customersManagementPage.getCustomerAddress(randomNumber), randomAddress, "Addresses do not match");
 
         softAssert.assertAll();
     }

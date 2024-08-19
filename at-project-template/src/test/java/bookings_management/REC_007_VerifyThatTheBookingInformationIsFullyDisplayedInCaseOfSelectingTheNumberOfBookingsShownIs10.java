@@ -9,7 +9,7 @@ public class REC_007_VerifyThatTheBookingInformationIsFullyDisplayedInCaseOfSele
 
     @BeforeMethod
     public void setUp() {
-        user = UserUtils.getUser();
+        user = UserUtils.getReceptionistAccount();
     }
 
     @Test

@@ -6,9 +6,11 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 
 import java.util.List;
+import java.util.regex.Pattern;
 
 public class BookingsManagementPage {
     WebDriver driver;
+    String result;
     By titleOfPageSelector = By.className("card-title");
     By bookingsNumberDropdownSelector = By.id("size");
     By numberOfBookingsSelector = By.xpath("//tbody//tr");
@@ -24,7 +26,7 @@ public class BookingsManagementPage {
         this.driver = driver;
     }
 
-    public String getTitleBookingsManagementPage() {
+    public String getTitle() {
         return driver.findElement(titleOfPageSelector).getText();
     }
 
@@ -57,19 +59,42 @@ public class BookingsManagementPage {
         driver.findElement(searchButtonSelector).click();
     }
 
-    public boolean search(String keySearch) {
+    private void search(String movieName) {
         WebElement searchBox = driver.findElement(searchBoxSelector);
         searchBox.click();
         searchBox.clear();
-        searchBox.sendKeys(keySearch);
+        searchBox.sendKeys(movieName);
         clickOnSearchButton();
+    }
+
+    public String getExactlyMovieNameExistsInDB() {
+        String exactlyOfMovieName = driver.findElement(nameOfMovieSelector).getText();
+        if (exactlyOfMovieName.contains(".")) {
+            result = Pattern.compile("\\.").matcher(exactlyOfMovieName).replaceAll("");
+        } else {
+            result = driver.findElement(nameOfMovieSelector).getText();
+        }
+        return result;
+    }
+
+    public String getPartiallyMovieNameExistsInDB() {
+        String partiallyOfMovieName = driver.findElement(nameOfMovieSelector).getText();
+        if (partiallyOfMovieName.length() > 3) {
+            result = partiallyOfMovieName.substring(0, 3);
+        } else {
+            result = driver.findElement(nameOfMovieSelector).getText();
+        }
+        return result;
+    }
+
+    public boolean searchMovieNameHasResult(String movieName) {
+        search(movieName);
 
         // Verify search results
         List<WebElement> resultMovies = driver.findElements(nameOfMovieSelector);
-
         boolean foundExactMatch = false;
         for (WebElement result : resultMovies) {
-            if (result.getText().contains(keySearch)) {
+            if (result.getText().contains(movieName)) {
                 foundExactMatch = true;
                 break;
             }
@@ -77,13 +102,8 @@ public class BookingsManagementPage {
         return foundExactMatch;
     }
 
-    public String searchForNoResult(String keySearch) {
-        WebElement searchExactly = driver.findElement(searchBoxSelector);
-        searchExactly.click();
-        searchExactly.clear();
-        searchExactly.sendKeys(keySearch);
-        clickOnSearchButton();
-
+    public String searchMovieNameNoResult(String movieName) {
+        search(movieName);
         return driver.findElement(textMessageSelector).getText();
     }
 
