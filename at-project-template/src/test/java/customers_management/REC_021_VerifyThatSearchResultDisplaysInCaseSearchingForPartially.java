@@ -6,6 +6,8 @@ import org.testng.annotations.Test;
 import utils.UserUtils;
 
 public class REC_021_VerifyThatSearchResultDisplaysInCaseSearchingForPartially extends TestBase {
+    String email;
+    String partialWithEmail;
 
     @BeforeMethod
     public void setUp() {
@@ -24,8 +26,14 @@ public class REC_021_VerifyThatSearchResultDisplaysInCaseSearchingForPartially e
 
         dashboardPage.openCustomersManagementPage();
 
+        email = customersManagementPage.getEmailOfFirstRow();
+
+        partialWithEmail = email.substring(0, email.length() / 2);
+
+        customersManagementPage.search(partialWithEmail);
+
         // Expected Result REC_021
-        softAssert.assertTrue(customersManagementPage.searchEmailHasResult(customersManagementPage.getPartiallyEmailExistsInDB()), "Partially match not found");
+        softAssert.assertTrue(customersManagementPage.areAllEmailContains(partialWithEmail));
 
         softAssert.assertAll();
     }

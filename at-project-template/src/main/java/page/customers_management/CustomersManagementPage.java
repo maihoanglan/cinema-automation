@@ -12,8 +12,6 @@ public class CustomersManagementPage {
     By titleOfPageSelector = By.className("card-title");
     By viewBookingsHyperlinkSelector = By.xpath("//tbody/tr/td[7]/a");
     By customerNameSelector = By.xpath("//tbody/tr/td");
-//    By editIconSelector = By.xpath(String.format("//tr[%s]//a[@title='Edit Customer']"));
-//    By customerAddressSelector = By.xpath("//tbody/tr[%s]/td[6]");
     By searchBoxSelector = By.id("searchValue");
     By searchButtonSelector = By.xpath("//div[@id='order-listing_filter']//button");
     By customerEmailSelector = By.xpath("//tbody/tr/td[2]");
@@ -47,7 +45,7 @@ public class CustomersManagementPage {
         driver.findElement(searchButtonSelector).click();
     }
 
-    private void search(String email) {
+    public void search(String email) {
         WebElement searchBox = driver.findElement(searchBoxSelector);
         searchBox.click();
         searchBox.clear();
@@ -55,26 +53,12 @@ public class CustomersManagementPage {
         clickOnSearchButton();
     }
 
-    public String getExactlyEmailExistsInDB() {
+    public String getEmailOfFirstRow() {
         return driver.findElement(customerEmailSelector).getText();
     }
 
-    public String getPartiallyEmailExistsInDB() {
-        String partiallyOfMovieName = driver.findElement(customerEmailSelector).getText();
-        if (partiallyOfMovieName.length() > 3) {
-            result = partiallyOfMovieName.substring(0, 3);
-        } else {
-            result = driver.findElement(customerEmailSelector).getText();
-        }
-        return result;
-    }
-
-    public boolean searchEmailHasResult(String email) {
-        search(email);
-
-        // Verify search results
+    public boolean areAllEmailContains(String email) {
         List<WebElement> resultMovies = driver.findElements(customerEmailSelector);
-
         boolean foundExactMatch = false;
         for (WebElement result : resultMovies) {
             if (result.getText().contains(email)) {
@@ -85,8 +69,7 @@ public class CustomersManagementPage {
         return foundExactMatch;
     }
 
-    public String searchEmailNoResult(String email) {
-        search(email);
-        return driver.findElement(textMessageSelector).getText();
+    public boolean isNoResultDisplayed() {
+        return driver.findElement(textMessageSelector).isDisplayed();
     }
 }

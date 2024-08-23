@@ -6,6 +6,8 @@ import org.testng.annotations.Test;
 import utils.UserUtils;
 
 public class REC_010_VerifyThatThereAreResultsReturnWhenSearchForPartially extends TestBase {
+    String movieName;
+    String partialWithMovieName;
 
     @BeforeMethod
     public void setUp() {
@@ -14,7 +16,6 @@ public class REC_010_VerifyThatThereAreResultsReturnWhenSearchForPartially exten
 
     @Test
     public void TestVerifyThatThereAreResultsReturnWhenSearchForPartially() {
-
         driver.get(config.getUrlHome());
 
         homePage.openLoginPage();
@@ -25,8 +26,14 @@ public class REC_010_VerifyThatThereAreResultsReturnWhenSearchForPartially exten
 
         dashboardPage.openBookingsManagementPage();
 
+        movieName = bookingManagementPage.getMovieNameOfFirstRow();
+
+        partialWithMovieName = movieName.substring(0, movieName.length()/2);
+
+        bookingManagementPage.search(partialWithMovieName);
+
         // Expected Result REC_010
-        softAssert.assertTrue(bookingManagementPage.searchMovieNameHasResult(bookingManagementPage.getPartiallyMovieNameExistsInDB()), "Partial match not found");
+        softAssert.assertTrue(bookingManagementPage.areAllMovieNameContains(partialWithMovieName), "Partial match not found");
 
         softAssert.assertAll();
     }

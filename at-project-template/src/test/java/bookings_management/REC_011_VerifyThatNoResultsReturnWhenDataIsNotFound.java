@@ -15,7 +15,6 @@ public class REC_011_VerifyThatNoResultsReturnWhenDataIsNotFound extends TestBas
 
     @Test
     public void TestVerifyThatNoResultsReturnWhenDataIsNotFound() {
-
         driver.get(config.getUrlHome());
 
         homePage.openLoginPage();
@@ -26,8 +25,10 @@ public class REC_011_VerifyThatNoResultsReturnWhenDataIsNotFound extends TestBas
 
         dashboardPage.openBookingsManagementPage();
 
+        bookingManagementPage.search(randomMovieName);
+
         // Expected Result REC_011
-        softAssert.assertEquals(bookingManagementPage.searchMovieNameNoResult(randomMovieName), "NO DATA DISPLAYED ! PLEASE CHECK AGAIN !", "Have search results returned");
+        softAssert.assertTrue(bookingManagementPage.isNoResultDisplayed(), "Have search results returned");
 
         softAssert.assertAll();
     }

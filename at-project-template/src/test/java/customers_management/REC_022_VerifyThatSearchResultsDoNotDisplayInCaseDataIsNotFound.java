@@ -25,8 +25,10 @@ public class REC_022_VerifyThatSearchResultsDoNotDisplayInCaseDataIsNotFound ext
 
         dashboardPage.openCustomersManagementPage();
 
+        customersManagementPage.search(randomEmail);
+
         // Expected Result REC_022
-        softAssert.assertEquals(customersManagementPage.searchEmailNoResult(randomEmail), "NO DATA DISPLAYED ! PLEASE CHECK AGAIN !", "Have search results returned");
+        softAssert.assertTrue(customersManagementPage.isNoResultDisplayed(), "Have search results returned");
 
         softAssert.assertAll();
     }

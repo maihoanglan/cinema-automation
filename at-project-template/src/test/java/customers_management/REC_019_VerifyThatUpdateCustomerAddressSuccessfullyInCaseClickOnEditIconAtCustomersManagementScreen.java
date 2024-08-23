@@ -11,7 +11,7 @@ public class REC_019_VerifyThatUpdateCustomerAddressSuccessfullyInCaseClickOnEdi
     public void setUp() {
         user = UserUtils.getReceptionistAccount();
         randomAddress = faker.address().fullAddress();
-        randomNumber = faker.number().numberBetween(0, 5);
+        randomNumber = faker.number().numberBetween(1, 5);
     }
 
     @Test

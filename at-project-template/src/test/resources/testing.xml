@@ -1,18 +1,38 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="Cinema" parallel="classes" thread-count="2">
-    <test name="CustomerRole">
-        <classes>
-            <class name="booking.CUS_003_VerifyThatBookingSuccessfullyInCaseTheCustomerBuyTicket"></class>
-        </classes>
-    </test>
-
-<!--    <parameter name="email" value="mailan97@gmail.com"></parameter>-->
-<!--    <parameter name="password" value="Abc@123"></parameter>-->
-<!--    <test name="Package test">-->
+<suite name="Cinema" parallel="none">
+<!--    <test name="CustomerRole-Booking">-->
 <!--        <classes>-->
-<!--            <class name="login.VerifyLoginFunctionPOM"></class>-->
-<!--                <parameter name="email" value="mailan11@gmail.com"></parameter>-->
+<!--            <class name="login.CUS_001_VerifyThatLoginSuccessfullyInCaseCustomerAccountExist"></class>-->
+<!--            <class name="login.CUS_002_VerifyThatLoginUnsuccessfullyInCaseCustomerAccountDoesNotExist"></class>-->
+<!--            <class name="booking.CUS_003_VerifyThatBookingSuccessfullyInCaseTheCustomerBuyTicket"></class>-->
 <!--        </classes>-->
 <!--    </test>-->
-<!--</suite>-->
+    <test name="Receptionist-Bookings">
+        <classes>
+            <class name="bookings_management.REC_004_VerifyThatBookingManagementScreenIsOpenedByReceptionist"></class>
+            <class name="bookings_management.REC_006_VerifyThatTheBookingInformationIsFullyDisplayedInCaseOfSelectingTheNumberOfBookingsShownIs5"></class>
+            <class name="bookings_management.REC_007_VerifyThatTheBookingInformationIsFullyDisplayedInCaseOfSelectingTheNumberOfBookingsShownIs10"></class>
+            <class name="bookings_management.REC_008_VerifyThatTheBookingInformationIsFullyDisplayedInCaseOfSelectingTheNumberOfBookingsShownIs15"></class>
+            <class name="bookings_management.REC_009_VerifyThatThereAreResultsReturnWhenSearchForExactly"></class>
+            <class name="bookings_management.REC_010_VerifyThatThereAreResultsReturnWhenSearchForPartially"></class>
+            <class name="bookings_management.REC_011_VerifyThatNoResultsReturnWhenDataIsNotFound"></class>
+            <class name="bookings_management.REC_012_VerifyThatViewBookingDetailScreenIsOpened"></class>
+            <class name="bookings_management.REC_013_VerifyThatItReturnsToTheBookingManagementScreenFromViewBookingDetailScreen"></class>
+            <class name="bookings_management.REC_014_VerifyThatViewInvoiceOfThisBookingScreenIsOpened"></class>
+            <class name="bookings_management.REC_015_VerifyThatItReturnsToTheBookingManagementScreenFromViewInvoiceOfBookingScreen"></class>
+        </classes>
+    </test>
+<!--    <test name="Receptionist-Customers">-->
+<!--        <classes>-->
+<!--            <class name="customers_management.REC_016_VerifyThatCustomersManagementScreenDisplaysInCaseLoginReceptionistAccount"></class>-->
+<!--            <class name="customers_management.REC_017_VerifyThatViewBookingsOfCustomerScreenDisplaysInCaseClickOnViewBookingsHyperlinkAtCustomersManagementScreen"></class>-->
+<!--            <class name="customers_management.REC_018_VerifyThatNavigateToCustomersManagementScreenInCaseClickOnBackToListCustomersButtonAtViewBookingsOfCustomerScreen"></class>-->
+<!--            <class name="customers_management.REC_019_VerifyThatUpdateCustomerAddressSuccessfullyInCaseClickOnEditIconAtCustomersManagementScreen"></class>-->
+<!--            <class name="customers_management.REC_020_VerifyThatSearchResultDisplaysInCaseSearchingForExactly"></class>-->
+<!--            <class name="customers_management.REC_021_VerifyThatSearchResultDisplaysInCaseSearchingForPartially"></class>-->
+<!--            <class name="customers_management.REC_022_VerifyThatSearchResultsDoNotDisplayInCaseDataIsNotFound"></class>-->
+<!--            <class name="logout.REC_046_VerifyThatLogoutWasSuccessfulByClickingTheLogoutButton"></class>-->
+<!--        </classes>-->
+<!--    </test>-->
+</suite>

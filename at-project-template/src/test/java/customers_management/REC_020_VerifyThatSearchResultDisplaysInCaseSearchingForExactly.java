@@ -6,6 +6,7 @@ import org.testng.annotations.Test;
 import utils.UserUtils;
 
 public class REC_020_VerifyThatSearchResultDisplaysInCaseSearchingForExactly extends TestBase {
+    String email;
 
     @BeforeMethod
     public void setUp() {
@@ -24,8 +25,12 @@ public class REC_020_VerifyThatSearchResultDisplaysInCaseSearchingForExactly ext
 
         dashboardPage.openCustomersManagementPage();
 
+        email = customersManagementPage.getEmailOfFirstRow();
+
+        customersManagementPage.search(email);
+
         // Expected Result REC_020
-        softAssert.assertTrue(customersManagementPage.searchEmailHasResult(customersManagementPage.getExactlyEmailExistsInDB()), "Exactly match not found");
+        softAssert.assertTrue(customersManagementPage.areAllEmailContains(email), "Search exactly with email unsuccessfully");
 
         softAssert.assertAll();
     }

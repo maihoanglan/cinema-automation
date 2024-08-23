@@ -6,6 +6,7 @@ import org.testng.annotations.Test;
 import utils.UserUtils;
 
 public class REC_009_VerifyThatThereAreResultsReturnWhenSearchForExactly extends TestBase {
+    String movieName;
 
     @BeforeMethod
     public void setUp() {
@@ -14,7 +15,6 @@ public class REC_009_VerifyThatThereAreResultsReturnWhenSearchForExactly extends
 
     @Test
     public void TestVerifyThatThereAreResultsReturnWhenSearchForExactly() {
-
         driver.get(config.getUrlHome());
 
         homePage.openLoginPage();
@@ -25,8 +25,12 @@ public class REC_009_VerifyThatThereAreResultsReturnWhenSearchForExactly extends
 
         dashboardPage.openBookingsManagementPage();
 
+        movieName = bookingManagementPage.getMovieNameOfFirstRow();
+
+        bookingManagementPage.search(movieName);
+
         // Expected Result REC_009
-        softAssert.assertTrue(bookingManagementPage.searchMovieNameHasResult(bookingManagementPage.getExactlyMovieNameExistsInDB()), "Exactly match not found");
+        softAssert.assertTrue(bookingManagementPage.areAllMovieNameContains(movieName) , "Search exactly with movie name unsuccessfully");
 
         softAssert.assertAll();
     }
