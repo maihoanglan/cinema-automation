@@ -12,9 +12,12 @@ import page.booking.*;
 import page.bookings_management.BookingsManagementPage;
 import page.bookings_management.ViewBookingDetailPage;
 import page.bookings_management.ViewInvoiceOfBookingPage;
+import page.customer_credit_card.CustomersCreditCardPage;
+import page.customer_credit_card.DepositForCustomerCreditCardPage;
 import page.customers_management.CustomersManagementPage;
 import page.customers_management.UpdateCustomerPage;
 import page.customers_management.ViewBookingsOfCustomer;
+import page.transactions_cinema.TransactionsCinemaPage;
 import utils.ConfigReader;
 import utils.ReadExcelFile;
 
@@ -46,6 +49,10 @@ public class TestBase {
     protected CustomerInformationPage customerInformationPage;
     protected PaymentPage paymentPage;
     protected SuccessfulTransactionPage successfulTransactionPage;
+    protected CustomersCreditCardPage customersCreditCardPage;
+    protected DepositForCustomerCreditCardPage depositForCustomerCreditCardPage;
+    protected TransactionsCinemaPage transactionsCinemaPage;
+    protected ManageUserPage manageUserPage;
 
     @BeforeClass
     public void navigate() {
@@ -69,6 +76,10 @@ public class TestBase {
         customerInformationPage = new CustomerInformationPage(driver);
         paymentPage = new PaymentPage(driver);
         successfulTransactionPage = new SuccessfulTransactionPage(driver);
+        customersCreditCardPage = new CustomersCreditCardPage(driver);
+        depositForCustomerCreditCardPage = new DepositForCustomerCreditCardPage(driver);
+        transactionsCinemaPage = new TransactionsCinemaPage(driver);
+        manageUserPage = new ManageUserPage(driver);
 
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));

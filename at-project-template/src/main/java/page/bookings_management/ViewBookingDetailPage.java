@@ -5,7 +5,6 @@ import org.openqa.selenium.WebDriver;
 
 public class ViewBookingDetailPage {
     WebDriver driver;
-    String title;
     By titleViewBookingDetailSelector = By.xpath("//div[@class='card-body']/h4");
     By backToListBookingsButtonSelector = By.xpath("//p[@class='text-center']//a[@href='/DoubleTCinema/admin/bookings']");
 
@@ -13,16 +12,29 @@ public class ViewBookingDetailPage {
         this.driver = driver;
     }
 
+    public String getBookingID() {
+        String originalString = driver.findElement(titleViewBookingDetailSelector).getText();
+
+        // Find the index of ": " which marks the start of the booking ID
+        int index = originalString.indexOf(": ");
+
+        // Extract the substring starting from index + 2 to the end
+        String bookingID = originalString.substring(index + 2);
+        return bookingID;
+    }
+
     public String getTitle() {
-        String titleViewBookingDetail = driver.findElement(titleViewBookingDetailSelector).getText();
+        String originalString = driver.findElement(titleViewBookingDetailSelector).getText();
 
-        // Find the index where ' -- ID Booking: ' starts
-        int endIndex = titleViewBookingDetail.indexOf(" -- ID Booking: ");
+        // Find the index of ": "
+        int index = originalString.indexOf(": ");
 
-        if (endIndex != -1) {
-            // Extract the substring from the beginning up to endIndex
-            title = titleViewBookingDetail.substring(0, endIndex); // 'View Booking Detail'
-        }
+        // Extract the substring from the start of the original string to the index
+        String title = originalString.substring(0, index);
+
+        // Trim any extra whitespace from the end
+        title = title.trim();
+
         return title;
     }
 

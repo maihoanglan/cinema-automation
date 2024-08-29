@@ -1,18 +1,72 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="Cinema" parallel="classes" thread-count="2">
-    <test name="CustomerRole">
+<suite name="Cinema Booking Online" parallel="none">
+    <test name="Bookings Management">
         <classes>
-            <class name="booking.CUS_003_VerifyThatBookingSuccessfullyInCaseTheCustomerBuyTicket"></class>
+            <class name="bookings_receptionist.CIN_004_VerifyThatBookingManagementScreenIsOpenedByReceptionist"></class>
+            <class name="bookings_receptionist.CIN_005_VerifyThatDataIsDisplayedCorrectlyAndFullyInCaseSelectDisplay5Bookings"></class>
+            <class name="bookings_receptionist.CIN_006_VerifyThatDataIsDisplayedCorrectlyAndFullyInCaseSelectDisplay10Bookings"></class>
+            <class name="bookings_receptionist.CIN_007_VerifyThatDataIsDisplayedCorrectlyAndFullyInCaseSelectDisplay15Bookings"></class>
+            <class name="bookings_receptionist.CIN_008_VerifyThatSearchResultIsDisplayedInCaseSearchingForExactly"></class>
+            <class name="bookings_receptionist.CIN_009_VerifyThatSearchResultIsDisplayedInCaseSearchingForPartially"></class>
+            <class name="bookings_receptionist.CIN_010_VerifyThatSearchResultIsNotDisplayedInCaseDataNotFound"></class>
+            <class name="bookings_receptionist.CIN_011_VerifyThatViewBookingDetailScreenIsOpenedAfterClickingOnViewBookingDetailsHyperlink"></class>
+            <class name="bookings_receptionist.CIN_012_VerifyThatBookingsManagementScreenIsOpenedAfterClickingOnBackToListBookingsAtViewBookingDetailScreen"></class>
+            <class name="bookings_receptionist.CIN_013_VerifyThatViewInvoicesOfBookingScreenIsOpenedAfterClickingOnViewInvoiceOfThisBookingHyperlink"></class>
+            <class name="bookings_receptionist.CIN_014_VerifyThatBookingsManagementScreenIsOpenedAfterClickingOnBackToListBookingsAtViewInvoicesOfBookingScreen"></class>
         </classes>
     </test>
 
-<!--    <parameter name="email" value="mailan97@gmail.com"></parameter>-->
-<!--    <parameter name="password" value="Abc@123"></parameter>-->
-<!--    <test name="Package test">-->
-<!--        <classes>-->
-<!--            <class name="login.VerifyLoginFunctionPOM"></class>-->
-<!--                <parameter name="email" value="mailan11@gmail.com"></parameter>-->
-<!--        </classes>-->
-<!--    </test>-->
-<!--</suite>-->
+    <test name="Customers Management">
+        <classes>
+            <class name="customers_receptionist.CIN_015_VerifyThatCustomersManagementScreenIsOpenedByReceptionist"></class>
+            <class name="customers_receptionist.CIN_016_VerifyThatViewBookingsOfCustomerScreenIsOpenedAfterClickingOnViewBookingsHyperlink"></class>
+            <class name="customers_receptionist.CIN_017_VerifyThatCustomersManagementScreenIsOpenedAfterClickingOnBackToListCustomersButtonAtViewBookingsOfCustomerScreen"></class>
+            <class name="customers_receptionist.CIN_018_VerifyThatUpdateCustomerAddressSuccessfullyInCaseClickOnEditIconAtCustomersManagementScreen"></class>
+            <class name="customers_receptionist.CIN_019_VerifyThatSearchResultIsDisplayedInCaseSearchingForExactly"></class>
+            <class name="customers_receptionist.CIN_020_VerifyThatSearchResultIsDisplayedInCaseSearchingForPartially"></class>
+            <class name="customers_receptionist.CIN_021_VerifyThatSearchResultIsNotDisplayedInCaseDataNotFound"></class>
+        </classes>
+    </test>
+
+    <test name="Transactions Management">
+        <classes>
+            <class name="transactions_receptionist.CIN_022_VerifyThatTransactionsManagementScreenIsOpenedByReceptionist"></class>
+            <class name="transactions_receptionist.CIN_023_VerifyThatDataIsDisplayedCorrectlyAndFullyInCaseSelectDisplay5Transactions"></class>
+            <class name="transactions_receptionist.CIN_024_VerifyThatDataIsDisplayedCorrectlyAndFullyInCaseSelectDisplay10Transactions"></class>
+            <class name="transactions_receptionist.CIN_025_VerifyThatDataIsDisplayedCorrectlyAndFullyInCaseSelectDisplay15Transactions"></class>
+            <class name="transactions_receptionist.CIN_026_VerifyThatSearchResultIsDisplayedInCaseSearchingForExactly"></class>
+            <class name="transactions_receptionist.CIN_027_VerifyThatSearchResultIsDisplayedInCaseSearchingForPartially"></class>
+            <class name="transactions_receptionist.CIN_028_VerifyThatSearchResultIsNotDisplayedInCaseDataNotFound"></class>
+        </classes>
+    </test>
+
+    <test name="Customer Role">
+        <classes>
+            <class name="booking_customer.CIN_030_VerifyThatLoginSuccessfullyByCustomerRoleInCaseCustomerAccountExists"></class>
+            <class name="booking_customer.CIN_031_VerifyThatLoginUnsuccessfullyByCustomerRoleInCaseCustomerAccountDoesNotExist"></class>
+            <class name="booking_customer.CIN_032_VerifyThatBookingSuccessfullyInCaseSelectValidDataIntoAllFields"></class>
+        </classes>
+    </test>
+
+    <test name="Admin Role">
+        <classes>
+            <class name="deposit_admin.CIN_033_VerifyThatLoginSuccessfullyByAdminRoleInCaseAdminAccountExists"></class>
+            <class name="deposit_admin.CIN_034_VerifyThatLoginUnsuccessfullyByAdminRoleInCaseAdminAccountDoesNotExist"></class>
+            <class name="deposit_admin.CIN_035_VerifyThatTheDepositSuccessfullyInCaseClickOnDepositIconAtCustomersCreditCardScreen"></class>
+            <class name="deposit_admin.CIN_036_VerifyThatTheDefaultValueIsDisplayedOnDepositBalanceFieldAtDepositForCustomerCreditCardScreen"></class>
+            <class name="deposit_admin.CIN_037_VerifyThatTheDepositUnsuccessfullyInCaseTheValueInDepositBalanceIs0"></class>
+        </classes>
+    </test>
+
+    <test name="General Receptionist">
+        <classes>
+            <class name="general_receptionist.CIN_001_VerifyThatLoginScreenIsOpenedAfterClickingOnLoginButtonAtTopRightHomePageScreen"></class>
+            <class name="general_receptionist.CIN_002_VerifyThatLoginSuccessfullyByReceptionistRoleInCaseReceptionistAccountExists"></class>
+            <class name="general_receptionist.CIN_003_VerifyThatLoginUnsuccessfullyByReceptionistRoleInCaseReceptionistAccountDoesNotExist"></class>
+            <class name="general_receptionist.ADD_CIN_001_VerifyThatManageProfileScreenIsOpenedAfterClickingManageYourProfileButtonAtReceptionistManagementPage"></class>
+            <class name="general_receptionist.CIN_029_VerifyThatLogoutSuccessfullyInCaseClickOnLogoutButtonAtReceptionistManagementPage"></class>
+        </classes>
+    </test>
+
+</suite>

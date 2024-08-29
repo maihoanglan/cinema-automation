@@ -4,7 +4,10 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.Wait;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.time.Duration;
 import java.util.List;
 import java.util.regex.Pattern;
 
@@ -20,7 +23,7 @@ public class BookingsManagementPage {
     By textMessageSelector = By.xpath("//tbody//div//h5");
     By viewBookingDetailsSelector = By.xpath("//tbody//tr//td[2]//p[3]//a");
     By viewInvoiceOfThisBookingSelector = By.xpath("//tbody//tr//td[2]//p[4]//a");
-
+    By idOfFirstBookingSelector = By.xpath("//tbody/tr/td");
 
     public BookingsManagementPage(WebDriver driver) {
         this.driver = driver;
@@ -37,16 +40,26 @@ public class BookingsManagementPage {
         select.selectByVisibleText(rows);
     }
 
+    public String getFirstBookingID() {
+        return driver.findElement(idOfFirstBookingSelector).getText();
+    }
+
     public void showFiveBookingRows() {
         selectNumberOfBookings("5");
+        Wait<WebDriver> wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        wait.until(driver -> driver.findElements(numberOfBookingsSelector).size() == 5);
     }
 
     public void showTenBookingRows() {
         selectNumberOfBookings("10");
+        Wait<WebDriver> wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        wait.until(driver -> driver.findElements(numberOfBookingsSelector).size() == 10);
     }
 
     public void showFifteenBookingRows() {
         selectNumberOfBookings("15");
+        Wait<WebDriver> wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        wait.until(driver -> driver.findElements(numberOfBookingsSelector).size() == 15);
     }
 
     public int numberOfBookingsIsDisplay() {
@@ -59,7 +72,7 @@ public class BookingsManagementPage {
         driver.findElement(searchButtonSelector).click();
     }
 
-    private void search(String movieName) {
+    public void search(String movieName) {
         WebElement searchBox = driver.findElement(searchBoxSelector);
         searchBox.click();
         searchBox.clear();
@@ -67,7 +80,7 @@ public class BookingsManagementPage {
         clickOnSearchButton();
     }
 
-    public String getExactlyMovieNameExistsInDB() {
+    public String getMovieNameOfFirstRow() {
         String exactlyOfMovieName = driver.findElement(nameOfMovieSelector).getText();
         if (exactlyOfMovieName.contains(".")) {
             result = Pattern.compile("\\.").matcher(exactlyOfMovieName).replaceAll("");
@@ -77,20 +90,7 @@ public class BookingsManagementPage {
         return result;
     }
 
-    public String getPartiallyMovieNameExistsInDB() {
-        String partiallyOfMovieName = driver.findElement(nameOfMovieSelector).getText();
-        if (partiallyOfMovieName.length() > 3) {
-            result = partiallyOfMovieName.substring(0, 3);
-        } else {
-            result = driver.findElement(nameOfMovieSelector).getText();
-        }
-        return result;
-    }
-
-    public boolean searchMovieNameHasResult(String movieName) {
-        search(movieName);
-
-        // Verify search results
+    public boolean areAllMovieNameContains(String movieName) {
         List<WebElement> resultMovies = driver.findElements(nameOfMovieSelector);
         boolean foundExactMatch = false;
         for (WebElement result : resultMovies) {
@@ -102,9 +102,8 @@ public class BookingsManagementPage {
         return foundExactMatch;
     }
 
-    public String searchMovieNameNoResult(String movieName) {
-        search(movieName);
-        return driver.findElement(textMessageSelector).getText();
+    public boolean isNoResultDisplayed() {
+        return driver.findElement(textMessageSelector).isDisplayed();
     }
 
     public void openViewBookingDetailsPage() {
