@@ -13,16 +13,29 @@ public class ViewInvoiceOfBookingPage {
         this.driver = driver;
     }
 
+    public String getBookingID() {
+        String originalString = driver.findElement(titleViewInvoiceOfBookingSelector).getText();
+
+        // Find the index of ": " which marks the start of the booking ID
+        int index = originalString.indexOf(": ");
+
+        // Extract the substring starting from index + 2 to the end
+        String bookingID = originalString.substring(index + 2);
+        return bookingID;
+    }
+
     public String getTitle() {
-        String titleViewInvoiceOfBooking = driver.findElement(titleViewInvoiceOfBookingSelector).getText();
+        String originalString = driver.findElement(titleViewInvoiceOfBookingSelector).getText();
 
-        // Find the index where ' -- ID Booking: ' starts
-        int endIndex = titleViewInvoiceOfBooking.indexOf(" -- ID Booking: ");
+        // Find the index of ": "
+        int index = originalString.indexOf(": ");
 
-        if (endIndex != -1) {
-            // Extract the substring from the beginning up to endIndex
-            title = titleViewInvoiceOfBooking.substring(0, endIndex); // 'View Invoices Of Booking'
-        }
+        // Extract the substring from the start of the original string to the index
+        String title = originalString.substring(0, index);
+
+        // Trim any extra whitespace from the end
+        title = title.trim();
+
         return title;
     }
 

@@ -1,38 +1,72 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="Cinema" parallel="none">
-<!--    <test name="CustomerRole-Booking">-->
-<!--        <classes>-->
-<!--            <class name="login.CUS_001_VerifyThatLoginSuccessfullyInCaseCustomerAccountExist"></class>-->
-<!--            <class name="login.CUS_002_VerifyThatLoginUnsuccessfullyInCaseCustomerAccountDoesNotExist"></class>-->
-<!--            <class name="booking.CUS_003_VerifyThatBookingSuccessfullyInCaseTheCustomerBuyTicket"></class>-->
-<!--        </classes>-->
-<!--    </test>-->
-    <test name="Receptionist-Bookings">
+<suite name="Cinema Booking Online" parallel="none">
+    <test name="Bookings Management">
         <classes>
-            <class name="bookings_management.REC_004_VerifyThatBookingManagementScreenIsOpenedByReceptionist"></class>
-            <class name="bookings_management.REC_006_VerifyThatTheBookingInformationIsFullyDisplayedInCaseOfSelectingTheNumberOfBookingsShownIs5"></class>
-            <class name="bookings_management.REC_007_VerifyThatTheBookingInformationIsFullyDisplayedInCaseOfSelectingTheNumberOfBookingsShownIs10"></class>
-            <class name="bookings_management.REC_008_VerifyThatTheBookingInformationIsFullyDisplayedInCaseOfSelectingTheNumberOfBookingsShownIs15"></class>
-            <class name="bookings_management.REC_009_VerifyThatThereAreResultsReturnWhenSearchForExactly"></class>
-            <class name="bookings_management.REC_010_VerifyThatThereAreResultsReturnWhenSearchForPartially"></class>
-            <class name="bookings_management.REC_011_VerifyThatNoResultsReturnWhenDataIsNotFound"></class>
-            <class name="bookings_management.REC_012_VerifyThatViewBookingDetailScreenIsOpened"></class>
-            <class name="bookings_management.REC_013_VerifyThatItReturnsToTheBookingManagementScreenFromViewBookingDetailScreen"></class>
-            <class name="bookings_management.REC_014_VerifyThatViewInvoiceOfThisBookingScreenIsOpened"></class>
-            <class name="bookings_management.REC_015_VerifyThatItReturnsToTheBookingManagementScreenFromViewInvoiceOfBookingScreen"></class>
+            <class name="bookings_receptionist.CIN_004_VerifyThatBookingManagementScreenIsOpenedByReceptionist"></class>
+            <class name="bookings_receptionist.CIN_005_VerifyThatDataIsDisplayedCorrectlyAndFullyInCaseSelectDisplay5Bookings"></class>
+            <class name="bookings_receptionist.CIN_006_VerifyThatDataIsDisplayedCorrectlyAndFullyInCaseSelectDisplay10Bookings"></class>
+            <class name="bookings_receptionist.CIN_007_VerifyThatDataIsDisplayedCorrectlyAndFullyInCaseSelectDisplay15Bookings"></class>
+            <class name="bookings_receptionist.CIN_008_VerifyThatSearchResultIsDisplayedInCaseSearchingForExactly"></class>
+            <class name="bookings_receptionist.CIN_009_VerifyThatSearchResultIsDisplayedInCaseSearchingForPartially"></class>
+            <class name="bookings_receptionist.CIN_010_VerifyThatSearchResultIsNotDisplayedInCaseDataNotFound"></class>
+            <class name="bookings_receptionist.CIN_011_VerifyThatViewBookingDetailScreenIsOpenedAfterClickingOnViewBookingDetailsHyperlink"></class>
+            <class name="bookings_receptionist.CIN_012_VerifyThatBookingsManagementScreenIsOpenedAfterClickingOnBackToListBookingsAtViewBookingDetailScreen"></class>
+            <class name="bookings_receptionist.CIN_013_VerifyThatViewInvoicesOfBookingScreenIsOpenedAfterClickingOnViewInvoiceOfThisBookingHyperlink"></class>
+            <class name="bookings_receptionist.CIN_014_VerifyThatBookingsManagementScreenIsOpenedAfterClickingOnBackToListBookingsAtViewInvoicesOfBookingScreen"></class>
         </classes>
     </test>
-<!--    <test name="Receptionist-Customers">-->
-<!--        <classes>-->
-<!--            <class name="customers_management.REC_016_VerifyThatCustomersManagementScreenDisplaysInCaseLoginReceptionistAccount"></class>-->
-<!--            <class name="customers_management.REC_017_VerifyThatViewBookingsOfCustomerScreenDisplaysInCaseClickOnViewBookingsHyperlinkAtCustomersManagementScreen"></class>-->
-<!--            <class name="customers_management.REC_018_VerifyThatNavigateToCustomersManagementScreenInCaseClickOnBackToListCustomersButtonAtViewBookingsOfCustomerScreen"></class>-->
-<!--            <class name="customers_management.REC_019_VerifyThatUpdateCustomerAddressSuccessfullyInCaseClickOnEditIconAtCustomersManagementScreen"></class>-->
-<!--            <class name="customers_management.REC_020_VerifyThatSearchResultDisplaysInCaseSearchingForExactly"></class>-->
-<!--            <class name="customers_management.REC_021_VerifyThatSearchResultDisplaysInCaseSearchingForPartially"></class>-->
-<!--            <class name="customers_management.REC_022_VerifyThatSearchResultsDoNotDisplayInCaseDataIsNotFound"></class>-->
-<!--            <class name="logout.REC_046_VerifyThatLogoutWasSuccessfulByClickingTheLogoutButton"></class>-->
-<!--        </classes>-->
-<!--    </test>-->
+
+    <test name="Customers Management">
+        <classes>
+            <class name="customers_receptionist.CIN_015_VerifyThatCustomersManagementScreenIsOpenedByReceptionist"></class>
+            <class name="customers_receptionist.CIN_016_VerifyThatViewBookingsOfCustomerScreenIsOpenedAfterClickingOnViewBookingsHyperlink"></class>
+            <class name="customers_receptionist.CIN_017_VerifyThatCustomersManagementScreenIsOpenedAfterClickingOnBackToListCustomersButtonAtViewBookingsOfCustomerScreen"></class>
+            <class name="customers_receptionist.CIN_018_VerifyThatUpdateCustomerAddressSuccessfullyInCaseClickOnEditIconAtCustomersManagementScreen"></class>
+            <class name="customers_receptionist.CIN_019_VerifyThatSearchResultIsDisplayedInCaseSearchingForExactly"></class>
+            <class name="customers_receptionist.CIN_020_VerifyThatSearchResultIsDisplayedInCaseSearchingForPartially"></class>
+            <class name="customers_receptionist.CIN_021_VerifyThatSearchResultIsNotDisplayedInCaseDataNotFound"></class>
+        </classes>
+    </test>
+
+    <test name="Transactions Management">
+        <classes>
+            <class name="transactions_receptionist.CIN_022_VerifyThatTransactionsManagementScreenIsOpenedByReceptionist"></class>
+            <class name="transactions_receptionist.CIN_023_VerifyThatDataIsDisplayedCorrectlyAndFullyInCaseSelectDisplay5Transactions"></class>
+            <class name="transactions_receptionist.CIN_024_VerifyThatDataIsDisplayedCorrectlyAndFullyInCaseSelectDisplay10Transactions"></class>
+            <class name="transactions_receptionist.CIN_025_VerifyThatDataIsDisplayedCorrectlyAndFullyInCaseSelectDisplay15Transactions"></class>
+            <class name="transactions_receptionist.CIN_026_VerifyThatSearchResultIsDisplayedInCaseSearchingForExactly"></class>
+            <class name="transactions_receptionist.CIN_027_VerifyThatSearchResultIsDisplayedInCaseSearchingForPartially"></class>
+            <class name="transactions_receptionist.CIN_028_VerifyThatSearchResultIsNotDisplayedInCaseDataNotFound"></class>
+        </classes>
+    </test>
+
+    <test name="Customer Role">
+        <classes>
+            <class name="booking_customer.CIN_030_VerifyThatLoginSuccessfullyByCustomerRoleInCaseCustomerAccountExists"></class>
+            <class name="booking_customer.CIN_031_VerifyThatLoginUnsuccessfullyByCustomerRoleInCaseCustomerAccountDoesNotExist"></class>
+            <class name="booking_customer.CIN_032_VerifyThatBookingSuccessfullyInCaseSelectValidDataIntoAllFields"></class>
+        </classes>
+    </test>
+
+    <test name="Admin Role">
+        <classes>
+            <class name="deposit_admin.CIN_033_VerifyThatLoginSuccessfullyByAdminRoleInCaseAdminAccountExists"></class>
+            <class name="deposit_admin.CIN_034_VerifyThatLoginUnsuccessfullyByAdminRoleInCaseAdminAccountDoesNotExist"></class>
+            <class name="deposit_admin.CIN_035_VerifyThatTheDepositSuccessfullyInCaseClickOnDepositIconAtCustomersCreditCardScreen"></class>
+            <class name="deposit_admin.CIN_036_VerifyThatTheDefaultValueIsDisplayedOnDepositBalanceFieldAtDepositForCustomerCreditCardScreen"></class>
+            <class name="deposit_admin.CIN_037_VerifyThatTheDepositUnsuccessfullyInCaseTheValueInDepositBalanceIs0"></class>
+        </classes>
+    </test>
+
+    <test name="General Receptionist">
+        <classes>
+            <class name="general_receptionist.CIN_001_VerifyThatLoginScreenIsOpenedAfterClickingOnLoginButtonAtTopRightHomePageScreen"></class>
+            <class name="general_receptionist.CIN_002_VerifyThatLoginSuccessfullyByReceptionistRoleInCaseReceptionistAccountExists"></class>
+            <class name="general_receptionist.CIN_003_VerifyThatLoginUnsuccessfullyByReceptionistRoleInCaseReceptionistAccountDoesNotExist"></class>
+            <class name="general_receptionist.ADD_CIN_001_VerifyThatManageProfileScreenIsOpenedAfterClickingManageYourProfileButtonAtReceptionistManagementPage"></class>
+            <class name="general_receptionist.CIN_029_VerifyThatLogoutSuccessfullyInCaseClickOnLogoutButtonAtReceptionistManagementPage"></class>
+        </classes>
+    </test>
+
 </suite>

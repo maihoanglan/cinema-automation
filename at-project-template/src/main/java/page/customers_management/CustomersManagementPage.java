@@ -8,7 +8,6 @@ import java.util.List;
 
 public class CustomersManagementPage {
     WebDriver driver;
-    String result;
     By titleOfPageSelector = By.className("card-title");
     By viewBookingsHyperlinkSelector = By.xpath("//tbody/tr/td[7]/a");
     By customerNameSelector = By.xpath("//tbody/tr/td");
@@ -58,9 +57,9 @@ public class CustomersManagementPage {
     }
 
     public boolean areAllEmailContains(String email) {
-        List<WebElement> resultMovies = driver.findElements(customerEmailSelector);
+        List<WebElement> resultCustomer = driver.findElements(customerEmailSelector);
         boolean foundExactMatch = false;
-        for (WebElement result : resultMovies) {
+        for (WebElement result : resultCustomer) {
             if (result.getText().contains(email)) {
                 foundExactMatch = true;
                 break;

@@ -19,6 +19,7 @@ public class HomePage {
     By cinemaFollowTabSelector = By.id("cinemaFollow-tab");
     By cinemaNameDropdownSelector = By.name("cinemaIdCinemaFollow");
     By movieNameDropdownSelector = By.name("movieIdCinemaFollow");
+    By cinemaShowDateDropDownSelector = By.name("showDateCinemaFollow");
     By cinemaShowTimeDropdownSelector = By.name("showTimeCinemaFollow");
     By buyTicketButton = By.xpath("//div[@id='cinemaFollow']//form//a");
 
@@ -61,12 +62,7 @@ public class HomePage {
         driver.findElement(administratorButtonSelector).click();
     }
 
-    public void logout() {
-        clickOnEmailAccount();
-        clickOnLogoutSection();
-    }
-
-    public void openAdministratorForReceptionist() {
+    public void openDashboardPage() {
         clickOnEmailAccount();
         clickOnAdministratorForReceptionistSection();
         // Interact with elements of new tab
@@ -100,6 +96,12 @@ public class HomePage {
         select.selectByVisibleText(movieName);
     }
 
+    public void chooseShowDate(String showDate) {
+        WebElement date = driver.findElement(cinemaShowDateDropDownSelector);
+        date.click();
+        date.sendKeys(showDate);
+    }
+
     public void chooseShowTime(String showTime) {
         WebElement time = driver.findElement(cinemaShowTimeDropdownSelector);
         time.click();
@@ -107,10 +109,11 @@ public class HomePage {
         select.selectByVisibleText(showTime);
     }
 
-    public void quickSearchTicket(String cinemaName, String movieName, String showTime) {
+    public void quickSearchTicket(String cinemaName, String movieName, String showDate, String showTime) {
         clickCinemaFollowTab();
         chooseCinema(cinemaName);
         chooseMovie(movieName);
+        chooseShowDate(showDate);
         chooseShowTime(showTime);
         clickBuyTicketButton();
     }

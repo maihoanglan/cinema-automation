@@ -2,6 +2,8 @@ package page.customers_management;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 
 public class ViewBookingsOfCustomer {
     WebDriver driver;
@@ -40,7 +42,15 @@ public class ViewBookingsOfCustomer {
         return name;
     }
 
+    private void clickOnBackToListCustomers() {
+        WebElement backButton = driver.findElement(backToListCustomersSelector);
+        Actions actions = new Actions(driver);
+        actions.moveToElement(backButton);
+        actions.perform();
+        backButton.click();
+    }
+
     public void returnCustomersManagementPage() {
-        driver.findElement(backToListCustomersSelector).click();
+        clickOnBackToListCustomers();
     }
 }
